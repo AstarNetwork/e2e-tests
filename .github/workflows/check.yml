@@ -1,0 +1,43 @@
+name: periodic check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0,12 * * *'
+
+env:
+  DB_PATH: ./db.sqlite
+
+jobs:
+  tests:
+    timeout-minutes: 30
+    strategy:
+        fail-fast: false
+        matrix:
+          tests: [xcm-transfer]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+    - name: Setup yarn
+      run: npm install -g yarn
+    - name: setup node env
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'yarn'
+    - run: yarn --immutable
+    - run: yarn ts-node scripts/update-env.ts
+    - run: yarn test tests/${{ matrix.tests }}
+    - uses: ravsamhq/notify-slack-action@v2
+      if: ${{ failure() }}
+      with:
+        status: ${{ job.status }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
