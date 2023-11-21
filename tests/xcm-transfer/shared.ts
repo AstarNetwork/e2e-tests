@@ -29,17 +29,17 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
       let fromAccount = alice
       if ('fromAccount' in opt) {
-        fromAccount = (opt as any).fromAccount(ctx)
+        fromAccount = opt.fromAccount(ctx)
       }
 
       let toAccount = alice
       if ('toAccount' in opt) {
-        toAccount = (opt as any).toAccount(ctx)
+        toAccount = opt.toAccount(ctx)
       }
 
       let precision = 3
       if ('precision' in opt) {
-        precision = opt.precision as number
+        precision = opt.precision
       }
 
       beforeEach(async () => {
@@ -48,14 +48,14 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           [to]: undefined,
         } as Record<NetworkNames, undefined>
         if ('route' in opt) {
-          networkOptions[opt.route as NetworkNames] = undefined
+          networkOptions[opt.route] = undefined
         }
         const chains = await createNetworks(networkOptions, ctx)
 
         fromChain = chains[from]
         toChain = chains[to]
         if ('route' in opt) {
-          routeChain = chains[opt.route as NetworkNames]
+          routeChain = chains[opt.route]
         }
 
         if ('fromStorage' in opt) {
