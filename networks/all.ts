@@ -1,8 +1,8 @@
 import { Config } from './types'
 
 import acalaConfig from './acala'
-import astarNextConfig from './astar-next'
 import astarConfig from './astar'
+import astarNextConfig from './astar-next'
 import bifrostConfig from './bifrost'
 import centrifugeConfig from './centrifuge'
 import crustConfig from './crust'

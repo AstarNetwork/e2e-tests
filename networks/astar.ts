@@ -41,8 +41,10 @@ export const astar = {
   astr: { Concrete: { parents: 0, interior: 'Here' } },
   aca: 18446744073709551616n,
   usdt: 4294969280n,
-  dot_loc : { Concrete: { parents: 1, interior: 'Here' } },
-  usdt_loc: { Concrete: { parents: 1, interior: { X3: [ { Parachain: 1000 }, { PalletInstance: 50 }, { GeneralIndex: 1984 }] } } },
+  dot_loc: { Concrete: { parents: 1, interior: 'Here' } },
+  usdt_loc: {
+    Concrete: { parents: 1, interior: { X3: [{ Parachain: 1000 }, { PalletInstance: 50 }, { GeneralIndex: 1984 }] } },
+  },
 } as const
 
 export const shiden = {

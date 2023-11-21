@@ -25,7 +25,7 @@ const tests = [
       xcmPalletHorizontal: {
         tx: tx.xcmPallet.limitedReserveTransferAssetsV3(
           statemine.usdt,
-          1e6,
+          1e7,
           tx.xcmPallet.parachainV3(1, shiden.paraId),
         ),
         fromBalance: query.assets(statemine.usdtIndex),
@@ -40,7 +40,7 @@ const tests = [
     name: 'USDT',
     fromStorage: ({ alice }: Context) => ({
       Assets: {
-        account: [[[shiden.usdt, alice.address], { balance: 10e8 }]],
+        account: [[[shiden.usdt, alice.address], { balance: 1e8 }]],
       },
     }),
     test: {
