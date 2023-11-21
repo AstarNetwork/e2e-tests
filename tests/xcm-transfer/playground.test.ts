@@ -3,7 +3,7 @@ import { it } from 'vitest'
 // import { Context } from '../../networks/types'
 // import { query, tx } from '../../helpers/api'
 
-// import { acala , karura } from '../../networks/acala'
+// import { astar , shiden } from '../../networks/astar'
 // import { basilisk , hydraDX } from '../../networks/hydraDX'
 // import { kusama, polkadot } from '../../networks/polkadot'
 // import { moonbeam } from '../../networks/moonbeam'

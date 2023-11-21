@@ -12,7 +12,7 @@ All tests:
 Run one test only:
 `yarn test ./tests/xcm-transfer/kusama-relay.test.ts`
 
-Or you can just use a keywork since it is using vitest and use regex to find tests:
+Or you can just use a keyword since it is using vitest and use regex to find tests:
 `yarn test xcm`
 
 ## Check compatibility with upcoming runtime
@@ -25,7 +25,7 @@ If there are expected breaking change, you can add a new network with the new ru
 
 This repo is using [vitest](https://vitest.dev) as the test runner. Most of the tests are written as [snapshot tests](https://vitest.dev/guide/snapshot.html). The test will run and save the result as snapshot in a `.snap` file, and next time when the test runs again, it will compare the result with the snapshot. This eliminates the need to write assertions and make the test more readable.
 
-There is [periodic check](https://github.com/AcalaNetwork/e2e-tests/actions/workflows/check.yml) Github Action to run the tests against latest mainnet block to detect compatibility issues with live networks.
+There is [periodic check](https://github.com/AstarNetwork/e2e-tests/actions/workflows/check.yml) Github Action to run the tests against latest mainnet block to detect compatibility issues with live networks.
 
 It is recommended use `yarn update-env` to update the `.env` file with latest block number before running the tests. This ensures tests are always running against the same blocks so that block data can be cached and reused to speed up test running time. Once you have a working test, update the blocks number again and rerun the tests to ensure the tests are block number indpendent. Use `redact` and event filters to make the snapshot be consistent regardless the block number.
 
@@ -124,7 +124,7 @@ CENTRIFUGE_BLOCK_ENDPOINT=ws://0.0.0.0:9017
 DB_PATH=./db.sqlite
 ```
 
-Use specific block number for tests and db cache can signficantly improve test running speed.
+Use specific block number for tests and db cache can significantly improve test running speed.
 
 Run `yarn update-env` to update .env file with latest block number.
 
@@ -132,7 +132,7 @@ To debug failing tests on CI, find the block number config from CI log and put t
 
 ### Use Subway to catch RPC responses
 
-Use [subway](http://github.com/AcalaNetwork/subway) to run local endpoints to catch RPC responses for additonal improved test running speed.
+Use [subway](http://github.com/AcalaNetwork/subway) to run local endpoints to catch RPC responses for additional improved test running speed.
 
 - Install Subway: `cargo install --git https://github.com/AcalaNetwork/subway.git`
 - Run: `./scripts/run-all.sh`
