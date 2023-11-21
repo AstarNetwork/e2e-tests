@@ -137,3 +137,6 @@ Use [subway](http://github.com/AcalaNetwork/subway) to run local endpoints to ca
 - Install Subway: `cargo install --git https://github.com/AcalaNetwork/subway.git`
 - Run: `./scripts/run-all.sh`
 
+## Acknowledgement
+
+This e2e tests repo are inspired by [Acala's e2e tests](https://github.com/AcalaNetwork/e2e-tests).
