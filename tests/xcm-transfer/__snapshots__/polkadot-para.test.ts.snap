@@ -315,6 +315,9 @@ exports[`'statemint' -> 'astar' xcm transfer 'USDT' > xcmPallet transfer > from 
               },
             },
           },
+          {
+            "setTopic": "redacted",
+          },
         ],
       },
     ],

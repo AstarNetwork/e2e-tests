@@ -1482,6 +1482,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.14.202
+  resolution: "@types/lodash@npm:4.14.202"
+  checksum: a91acf3564a568c6f199912f3eb2c76c99c5a0d7e219394294213b3f2d54f672619f0fde4da22b29dc5d4c31457cd799acc2e5cb6bd90f9af04a1578483b6ff7
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:^20.6.0":
   version: 20.8.9
   resolution: "@types/node@npm:20.8.9"
@@ -2002,6 +2009,7 @@ __metadata:
     "@acala-network/chopsticks": ^0.9.2
     "@acala-network/chopsticks-testing": ^0.9.2
     "@polkadot/api": ^10.10.1
+    "@types/lodash": ^4
     "@types/node": ^20.6.0
     "@typescript-eslint/eslint-plugin": ^6.7.3
     "@typescript-eslint/parser": ^6.7.0
@@ -2014,6 +2022,7 @@ __metadata:
     eslint-plugin-sort-imports-es6-autofix: ^0.6.0
     husky: ^8.0.3
     lint-staged: ^14.0.1
+    lodash: ^4.17.21
     prettier: ^3.0.3
     ts-node: ^10.9.1
     typescript: ^5.2.2
