@@ -317,7 +317,7 @@ exports[`'statemine' -> 'shiden' xcm transfer 'USDT' > xcmPallet transfer > from
             },
           },
           {
-            "setTopic": "0x729b653e30a40e2421a7671766a22136c5b3081b1808428a2b3362378928053f",
+            "setTopic": "0xaef65e19edcf9abad8d23ee571d2fb6c40599abb429cced5fbd1a76706371c6c",
           },
         ],
       },
