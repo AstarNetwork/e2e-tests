@@ -25,7 +25,7 @@ const tests = [
     name: 'DOT',
     test: {
       xtokensUp: {
-        tx: tx.xtokens.transfer(astar.dot_loc, 1e12, tx.xtokens.relaychainV3),
+        tx: tx.xtokens.transfer(astar.dot, 1e12, tx.xtokens.relaychainV3),
         balance: query.assets(astar.dot),
       },
     },

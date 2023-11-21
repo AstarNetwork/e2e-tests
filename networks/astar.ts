@@ -18,10 +18,10 @@ export default {
   config: ({ alice, relayToken }) => ({
     storages: {
       System: {
-        Account: [[[alice.address], { data: { free: 1000n * 10n **18n } }]],
+        account: [[[alice.address], { providers: 1, data: { free: 10n * 10n ** 18n } }]],
       },
       Assets: {
-        account: [[[relayToken, alice.address], { balance: 10n ** 18n }]],
+        account: [[[relayToken, alice.address], { balance: 10n * 10n ** 12n }]],
       },
       Sudo: {
         key: alice.address,
