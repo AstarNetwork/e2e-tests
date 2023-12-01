@@ -36,6 +36,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acala-network/chopsticks-core@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@acala-network/chopsticks-core@npm:0.9.3"
+  dependencies:
+    "@acala-network/chopsticks-executor": 0.9.3
+    "@polkadot/rpc-provider": ^10.10.1
+    "@polkadot/types": ^10.10.1
+    "@polkadot/types-codec": ^10.10.1
+    "@polkadot/types-known": ^10.10.1
+    "@polkadot/util": ^12.5.1
+    "@polkadot/util-crypto": ^12.5.1
+    comlink: ^4.4.1
+    eventemitter3: ^5.0.1
+    lodash: ^4.17.21
+    lru-cache: ^10.0.3
+    pino: ^8.16.2
+    pino-pretty: ^10.2.3
+    rxjs: ^7.8.1
+    zod: ^3.22.4
+  checksum: 86648f793ac864d8f56af54583c554e7597223aeb4793619237fd6968934042628334194d77f92ac1dbf81817acb30932ec44ad395bb085de5503ba1f3232c2d
+  languageName: node
+  linkType: hard
+
 "@acala-network/chopsticks-db@npm:0.9.2":
   version: 0.9.2
   resolution: "@acala-network/chopsticks-db@npm:0.9.2"
@@ -49,6 +72,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acala-network/chopsticks-db@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@acala-network/chopsticks-db@npm:0.9.3"
+  dependencies:
+    "@acala-network/chopsticks-core": 0.9.3
+    "@polkadot/util": ^12.5.1
+    idb: ^7.1.1
+    sqlite3: ^5.1.6
+    typeorm: ^0.3.17
+  checksum: 12c8a171cc0c88515e0f38b3008688933d78cb7be4fe8904789deb135b993a09568986ce148eeac89ff51ffab2e57497649fe3c90ea547c5178fd791cd1de862
+  languageName: node
+  linkType: hard
+
 "@acala-network/chopsticks-executor@npm:0.9.2":
   version: 0.9.2
   resolution: "@acala-network/chopsticks-executor@npm:0.9.2"
@@ -56,6 +92,16 @@ __metadata:
     "@polkadot/util": ^12.5.1
     "@polkadot/wasm-util": ^7.2.2
   checksum: a486f43fe55462f1344dee187a6e849b05d8cf3f0008c5fabda4535f3dce60e158fc1b7692c1edee95d2c96c323b7f61ee034b16e99cfcac274ee25fd41221dd
+  languageName: node
+  linkType: hard
+
+"@acala-network/chopsticks-executor@npm:0.9.3":
+  version: 0.9.3
+  resolution: "@acala-network/chopsticks-executor@npm:0.9.3"
+  dependencies:
+    "@polkadot/util": ^12.5.1
+    "@polkadot/wasm-util": ^7.2.2
+  checksum: 720772c7d66dc1d3ec5657680544458fa9eba9e635d1bf7a32a515dc66a2e753cb845045922503a505b4160d90d6f10afca8c39d54f804fb6e2399e0cceb9e55
   languageName: node
   linkType: hard
 
@@ -81,7 +127,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@acala-network/chopsticks@npm:0.9.2, @acala-network/chopsticks@npm:^0.9.2":
+"@acala-network/chopsticks@npm:0.9.2":
   version: 0.9.2
   resolution: "@acala-network/chopsticks@npm:0.9.2"
   dependencies:
@@ -104,6 +150,32 @@ __metadata:
   bin:
     chopsticks: ./chopsticks.cjs
   checksum: 3adf1946dc85027c92e6041f44171d5f825428e057ed009fdee6ad8a7841e3b8a97179747e24e7e1f4468e9647d6d6f436b125848612c9503630551d7db322af
+  languageName: node
+  linkType: hard
+
+"@acala-network/chopsticks@npm:^0.9.3":
+  version: 0.9.3
+  resolution: "@acala-network/chopsticks@npm:0.9.3"
+  dependencies:
+    "@acala-network/chopsticks-core": 0.9.3
+    "@acala-network/chopsticks-db": 0.9.3
+    "@pnpm/npm-conf": ^2.2.2
+    "@polkadot/api-augment": ^10.10.1
+    "@polkadot/types": ^10.10.1
+    "@polkadot/util": ^12.5.1
+    "@polkadot/util-crypto": ^12.5.1
+    axios: ^1.6.2
+    dotenv: ^16.3.1
+    global-agent: ^3.0.0
+    js-yaml: ^4.1.0
+    jsondiffpatch: ^0.5.0
+    lodash: ^4.17.21
+    ws: ^8.14.2
+    yargs: ^17.7.2
+    zod: ^3.22.4
+  bin:
+    chopsticks: ./chopsticks.cjs
+  checksum: 0d38247002b4d102fae8d0c05fc428605bc6ad4848dc4e875853e14aefdf8346ad5f215c288520fd1ec477807c549358d60df7ee5b89e4141991e91d84a46046
   languageName: node
   linkType: hard
 
@@ -2006,7 +2078,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "astar-e2e-tests@workspace:."
   dependencies:
-    "@acala-network/chopsticks": ^0.9.2
+    "@acala-network/chopsticks": ^0.9.3
     "@acala-network/chopsticks-testing": ^0.9.2
     "@polkadot/api": ^10.10.1
     "@types/lodash": ^4
@@ -2051,7 +2123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.0":
+"axios@npm:^1.6.0, axios@npm:^1.6.2":
   version: 1.6.2
   resolution: "axios@npm:1.6.2"
   dependencies:
@@ -4203,6 +4275,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lru-cache@npm:^10.0.3":
+  version: 10.1.0
+  resolution: "lru-cache@npm:10.1.0"
+  checksum: 58056d33e2500fbedce92f8c542e7c11b50d7d086578f14b7074d8c241422004af0718e08a6eaae8705cee09c77e39a61c1c79e9370ba689b7010c152e6a76ab
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -5039,7 +5118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^8.16.1":
+"pino@npm:^8.16.1, pino@npm:^8.16.2":
   version: 8.16.2
   resolution: "pino@npm:8.16.2"
   dependencies:
