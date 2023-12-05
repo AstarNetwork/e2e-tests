@@ -119,6 +119,7 @@ exports[`'astar' -> 'statemint' xcm transfer 'USDT' > xtokens transfer > to chai
   {
     "data": {
       "messageHash": "(hash)",
+      "messageId": "(hash)",
       "weight": {
         "proofSize": "(rounded 3600)",
         "refTime": "(rounded 310000000)",
@@ -332,8 +333,8 @@ exports[`'statemint' -> 'astar' xcm transfer 'USDT' > xcmPallet transfer > to ch
     "data": {
       "messageHash": "(hash)",
       "weight": {
-        "proofSize": "(rounded 16000)",
-        "refTime": 4000000000,
+        "proofSize": "(rounded 20000)",
+        "refTime": 5000000000,
       },
     },
     "method": "Success",
@@ -345,14 +346,14 @@ exports[`'statemint' -> 'astar' xcm transfer 'USDT' > xcmPallet transfer > to ch
 exports[`'statemint' -> 'astar' xcm transfer 'USDT' > xcmPallet transfer > tx events 1`] = `
 [
   {
-    "data": [
-      {
+    "data": {
+      "outcome": {
         "Complete": {
           "proofSize": "(rounded 6200)",
-          "refTime": "(rounded 673000000)",
+          "refTime": "(rounded 677000000)",
         },
       },
-    ],
+    },
     "method": "Attempted",
     "section": "polkadotXcm",
   },
