@@ -23,7 +23,7 @@ const checkHrmp = (network: Network) => {
   const hrmp = check(network.api.query.parachainSystem.hrmpOutboundMessages(), 'hrmp')
   if (network.api.registry.hasType('XcmVersionedXcm')) {
     return hrmp.map((value) =>
-      value.map(({ recipient, data }) => ({
+      value.map(({ recipient, data }: { recipient: any; data: any }) => ({
         data: network.api.createType('(XcmpMessageFormat, XcmVersionedXcm)', data).toJSON(),
         recipient,
       })),
