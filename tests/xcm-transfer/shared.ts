@@ -1,10 +1,9 @@
+import { afterEach, beforeEach, describe, it } from 'vitest'
+import { sendTransaction } from '@acala-network/chopsticks-testing'
 import _ from 'lodash'
 
-import { beforeEach, describe, it } from 'vitest'
-import { sendTransaction } from '@acala-network/chopsticks-testing'
-
 import { Network, NetworkNames, createContext, createNetworks } from '../../networks'
-import { check, checkEvents, checkHrmp, checkSystemEvents, checkUmp } from '../../helpers'
+import { check, checkEvents, checkSystemEvents } from '../../helpers'
 
 import type { TestType as KusamaParaTestType } from './kusama-para.test'
 import type { TestType as KusamaRelayTestType } from './kusama-relay.test'
@@ -19,6 +18,27 @@ type TestType =
   | PolkadotParaTestType
   | PlaygroundTestType
 
+// TODO: figure out whey using chopsticks-testing impl will not find 'XcmVersionedXcm'
+const checkHrmp = (network: Network) => {
+  const hrmp = check(network.api.query.parachainSystem.hrmpOutboundMessages(), 'hrmp')
+  if (network.api.registry.hasType('XcmVersionedXcm')) {
+    return hrmp.map((value) =>
+      value.map(({ recipient, data }) => ({
+        data: network.api.createType('(XcmpMessageFormat, XcmVersionedXcm)', data).toJSON(),
+        recipient,
+      })),
+    )
+  }
+  return hrmp.toJson()
+}
+const checkUmp = (network: Network) => {
+  const ump = check(network.api.query.parachainSystem.upwardMessages(), 'ump')
+  if (network.api.registry.hasType('XcmVersionedXcm')) {
+    return ump.map((value) => network.api.createType('Vec<XcmVersionedXcm>', value).toJSON())
+  }
+  return ump.toJson()
+}
+
 export default function buildTest(tests: ReadonlyArray<TestType>) {
   for (const { from, to, test, name, ...opt } of tests) {
     describe(`'${from}' -> '${to}' xcm transfer '${name}'`, async () => {
@@ -31,18 +51,18 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
       let fromAccount = alice
       if ('fromAccount' in opt) {
-        fromAccount = opt.fromAccount(ctx)
+        fromAccount = (opt.fromAccount as any)(ctx)
       }
 
       let toAccount = alice
       if ('toAccount' in opt) {
-        toAccount = opt.toAccount(ctx)
+        toAccount = (opt.toAccount as any)(ctx)
       }
 
-      let precision = 3
-      if ('precision' in opt) {
-        precision = opt.precision
-      }
+      const precision = 3
+      // if ('precision' in opt) {
+      //   precision = opt.precision
+      // }
 
       beforeEach(async () => {
         const networkOptions = {
@@ -69,13 +89,13 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           const override = typeof opt.toStorage === 'function' ? opt.toStorage(ctx) : opt.toStorage
           await toChain.dev.setStorage(override)
         }
+      })
 
-        return async () => {
-          await toChain.teardown()
-          await fromChain.teardown()
-          if (routeChain) {
-            await routeChain.teardown()
-          }
+      afterEach(async () => {
+        await toChain.teardown()
+        await fromChain.teardown()
+        if (routeChain) {
+          await routeChain.teardown()
         }
       })
 
@@ -99,7 +119,7 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
             .redact({ number: precision })
             .toMatchSnapshot('balance on to chain')
           await checkSystemEvents(toChain, 'ump', 'messageQueue').toMatchSnapshot('to chain ump events')
-        })
+        }, 240000)
       }
 
       if ('xcmPalletDown' in test) {
@@ -120,8 +140,10 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           await check(balance(toChain, toAccount.address))
             .redact({ number: precision })
             .toMatchSnapshot('balance on to chain')
-          await checkSystemEvents(toChain, 'parachainSystem', 'dmpQueue').toMatchSnapshot('to chain dmp events')
-        })
+          await checkSystemEvents(toChain, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
+            'to chain dmp events',
+          )
+        }, 240000)
       }
 
       if ('xcmPalletHorizontal' in test) {
@@ -141,9 +163,7 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
             await checkUmp(fromChain).toMatchSnapshot('from chain ump messages')
           } else {
             await checkHrmp(fromChain)
-              .map((v) => JSON.parse(JSON.stringify(v)))
-              // redact setTopic
-              .map((v) => _.update(v, '[0].data[1].v3[4].setTopic', () => 'redacted'))
+              .redact({ redactKeys: /setTopic/ })
               .toMatchSnapshot('from chain hrmp messages')
           }
 
@@ -155,8 +175,10 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           await check(toBalance(toChain, toAccount.address))
             .redact({ number: precision })
             .toMatchSnapshot('balance on to chain')
-          await checkSystemEvents(toChain, 'xcmpQueue', 'dmpQueue').toMatchSnapshot('to chain xcm events')
-        })
+          await checkSystemEvents(toChain, 'xcmpQueue', 'dmpQueue', 'messageQueue').toMatchSnapshot(
+            'to chain xcm events',
+          )
+        }, 240000)
       }
 
       if ('xtokenstHorizontal' in test) {
@@ -187,8 +209,10 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           await check(toBalance(toChain, toAccount.address))
             .redact({ number: precision })
             .toMatchSnapshot('balance on to chain')
-          await checkSystemEvents(toChain, 'xcmpQueue', 'dmpQueue').toMatchSnapshot('to chain xcm events')
-        })
+          await checkSystemEvents(toChain, 'xcmpQueue', 'dmpQueue', 'messageQueue').toMatchSnapshot(
+            'to chain xcm events',
+          )
+        }, 240000)
       }
     })
   }
