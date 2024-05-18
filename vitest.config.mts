@@ -8,7 +8,6 @@ export default defineConfig({
 		testTimeout: 240_000,
 		pool: 'forks',
 		passWithNoTests: true,
-		retry: process.env.CI ? 1 : 0,
 		reporters: process.env.GITHUB_ACTIONS ? ['basic', 'github-actions'] : ['basic'],
 	},
 	plugins: [swc.vite()],
