@@ -18,19 +18,13 @@ export const given = <T extends NetworkNames>(...names: NetworkNames[]) =>
     keyring: ReturnType<typeof createContext>
   }>({
     networks: async ({ task }, use) => {
-      if (task.retry) {
-        throw new Error('given cannot run with retry')
-      }
-      if (task.concurrent) {
-        throw new Error('given cannot run in concurrent mode')
-      }
       const manager = new NetworkManager()
-      _.assign(task.suite, { __networkManager__: manager })
+      _.assign(task, { __networkManager__: manager })
       await use(await manager.buildNetworks(names))
     },
     keyring: async ({ task }, use) => {
       // network manager is assigned above
-      const manager: NetworkManager = _.get(task.suite, '__networkManager__')!
+      const manager: NetworkManager = _.get(task, '__networkManager__')!
       await use(manager.keyring)
     },
   })
