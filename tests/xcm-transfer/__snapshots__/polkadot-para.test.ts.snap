@@ -25,7 +25,90 @@ exports[`'astar' -> 'statemint' xcm transfer 'USDT' > xtokens transfer > balance
 exports[`'astar' -> 'statemint' xcm transfer 'USDT' > xtokens transfer > from chain hrmp messages 1`] = `
 [
   {
-    "data": "0x0002100004000002043205011f00025a62020a13000002043205011f00025a6202000d0100040001010088dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee",
+    "data": [
+      "ConcatenatedVersionedXcm",
+      {
+        "v2": [
+          {
+            "withdrawAsset": [
+              {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x2": [
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 0,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            "clearOrigin": null,
+          },
+          {
+            "buyExecution": {
+              "fees": {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x2": [
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 0,
+                  },
+                },
+              },
+              "weightLimit": {
+                "unlimited": null,
+              },
+            },
+          },
+          {
+            "depositAsset": {
+              "assets": {
+                "wild": {
+                  "all": null,
+                },
+              },
+              "beneficiary": {
+                "interior": {
+                  "x1": {
+                    "accountId32": {
+                      "id": "0x88dc3417d5058ec4b4503e0c12ea1a0a89be200fe98922423d4334014fa6b0ee",
+                      "network": {
+                        "any": null,
+                      },
+                    },
+                  },
+                },
+                "parents": 0,
+              },
+              "maxAssets": 1,
+            },
+          },
+        ],
+      },
+    ],
     "recipient": 1000,
   },
 ]
