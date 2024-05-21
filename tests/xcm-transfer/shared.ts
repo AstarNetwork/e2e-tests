@@ -3,7 +3,7 @@ import { sendTransaction } from '@acala-network/chopsticks-testing'
 import _ from 'lodash'
 
 import { Network, NetworkNames, createContext, createNetworks } from '../../networks'
-import { check, checkEvents, checkSystemEvents } from '../../helpers'
+import { check, checkEvents, checkHrmp, checkSystemEvents, checkUmp } from '../../helpers'
 
 import type { TestType as KusamaParaTestType } from './kusama-para.test'
 import type { TestType as KusamaRelayTestType } from './kusama-relay.test'
@@ -17,27 +17,6 @@ type TestType =
   | PolkadotRelayTestType
   | PolkadotParaTestType
   | PlaygroundTestType
-
-// TODO: figure out whey using chopsticks-testing impl will not find 'XcmVersionedXcm'
-const checkHrmp = (network: Network) => {
-  const hrmp = check(network.api.query.parachainSystem.hrmpOutboundMessages(), 'hrmp')
-  if (network.api.registry.hasType('XcmVersionedXcm')) {
-    return hrmp.map((value) =>
-      value.map(({ recipient, data }: { recipient: any; data: any }) => ({
-        data: network.api.createType('(XcmpMessageFormat, XcmVersionedXcm)', data).toJSON(),
-        recipient,
-      })),
-    )
-  }
-  return hrmp.toJson()
-}
-const checkUmp = (network: Network) => {
-  const ump = check(network.api.query.parachainSystem.upwardMessages(), 'ump')
-  if (network.api.registry.hasType('XcmVersionedXcm')) {
-    return ump.map((value) => network.api.createType('Vec<XcmVersionedXcm>', value).toJSON())
-  }
-  return ump.toJson()
-}
 
 export default function buildTest(tests: ReadonlyArray<TestType>) {
   for (const { from, to, test, name, ...opt } of tests) {
