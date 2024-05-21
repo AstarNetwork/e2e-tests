@@ -20,7 +20,9 @@ export const given = <T extends NetworkNames>(...names: NetworkNames[]) =>
     networks: async ({ task }, use) => {
       const manager = new NetworkManager()
       _.assign(task, { __networkManager__: manager })
-      await use(await manager.buildNetworks(names))
+      const networks = await manager.buildNetworks(names)
+      await use(networks)
+      await Promise.all(Object.values(networks).map(({ teardown }) => teardown()))
     },
     keyring: async ({ task }, use) => {
       // network manager is assigned above

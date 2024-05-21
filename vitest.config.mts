@@ -8,7 +8,7 @@ export default defineConfig({
 		testTimeout: 240_000,
 		pool: 'forks',
 		passWithNoTests: true,
-		reporters: process.env.GITHUB_ACTIONS ? ['basic', 'github-actions'] : ['basic'],
+		reporters: process.env.GITHUB_ACTIONS ? ['basic', 'github-actions'] : ['verbose'],
 	},
 	plugins: [swc.vite()],
 })
