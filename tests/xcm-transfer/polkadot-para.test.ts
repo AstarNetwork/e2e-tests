@@ -11,6 +11,7 @@ const tests = [
   {
     from: 'statemint',
     to: 'astar',
+    route: 'polkadot', // for sending DOT for fee
     name: 'USDT',
     fromStorage: ({ alice }: Context) => ({
       System: {
@@ -33,6 +34,7 @@ const tests = [
   {
     from: 'astar',
     to: 'statemint',
+    route: 'polkadot', // for sending DOT for fee
     name: 'USDT',
     fromStorage: ({ alice }: Context) => ({
       Assets: {
