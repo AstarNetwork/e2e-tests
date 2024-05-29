@@ -1,19 +1,8 @@
-// import { Context } from '../../networks/types'
-// import { query, tx } from '../../helpers/api'
+import { expect } from 'vitest'
+import { given } from '../../helpers'
 
-// import { astar , shiden } from '../../networks/astar'
-// import { basilisk , hydraDX } from '../../networks/hydraDX'
-// import { kusama, polkadot } from '../../networks/polkadot'
-// import { moonbeam } from '../../networks/moonbeam'
-// import { statemine , statemint } from '../../networks/statemint'
-
-import buildTest from './shared'
-
-// Use this file to write new tests so you can run it without running all other tests
-// Move the tests to approapriate file when you are done
-
-const tests = [] as const
-
-export type TestType = (typeof tests)[number]
-
-buildTest(tests)
+given('astar')('Playground', async ({ networks: { astar }, keyring: { alice } }) => {
+  expect(astar).toBeTruthy()
+  expect(alice).toBeTruthy()
+  // do somethig
+})

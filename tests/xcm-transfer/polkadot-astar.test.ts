@@ -1,6 +1,6 @@
 import { astar as astarUtil } from '../../networks/astar'
-import { check, checkSystemEvents, given } from '../../helpers'
-import { describe } from 'vitest'
+import { checkSystemEvents, given } from '../../helpers'
+import { describe, expect } from 'vitest'
 import { polkadot as polkadotUtil } from '../../networks/polkadot'
 import { query, tx } from '../../helpers/api'
 
@@ -21,9 +21,14 @@ describe('Polkadot & Astar', () => {
 
       await astar.chain.newBlock()
 
-      await check(query.assets(astarUtil.dot)(astar, bob.address)).toMatchSnapshot('002: astar balance')
+      const bobBalance = await query.assets(astarUtil.dot)(astar, bob.address)
+      expect(bobBalance.unwrap().balance.toNumber()).closeTo(
+        1e12,
+        1e6, // some fee
+        'Expected amount was not received',
+      )
 
-      await checkSystemEvents(astar, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot('003: astar event')
+      await checkSystemEvents(astar, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot('002: astar event')
     },
   )
 
@@ -38,9 +43,14 @@ describe('Polkadot & Astar', () => {
 
       await polkadot.chain.newBlock()
 
-      await check(polkadot.api.query.system.account(bob.address)).toMatchSnapshot('002: polkadot balance')
+      const bobBalance = await polkadot.api.query.system.account(bob.address)
+      expect(bobBalance.data.free.toNumber()).closeTo(
+        1e12,
+        1e8, // some fee
+        'Expected amount was not received',
+      )
 
-      await checkSystemEvents(polkadot, 'messageQueue').toMatchSnapshot('003: polkadot event')
+      await checkSystemEvents(polkadot, 'messageQueue').toMatchSnapshot('002: polkadot event')
     },
   )
 })

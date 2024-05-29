@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot event 1`] = `
+exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 001: kusama event 1`] = `
 [
   {
     "data": {
@@ -8,7 +8,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
         "Complete": {
           "used": {
             "proofSize": "(rounded 6200)",
-            "refTime": "(rounded 250000000)",
+            "refTime": "(rounded 290000000)",
           },
         },
       },
@@ -21,7 +21,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
       "fees": [
         {
           "fun": {
-            "Fungible": "(rounded 400000000)",
+            "Fungible": "(rounded 1300000000)",
           },
           "id": {
             "interior": "Here",
@@ -35,7 +35,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
             {
               "AccountId32": {
                 "id": "(hash)",
-                "network": "Polkadot",
+                "network": "Kusama",
               },
             },
           ],
@@ -117,7 +117,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
             {
               "AccountId32": {
                 "id": "(hash)",
-                "network": "Polkadot",
+                "network": "Kusama",
               },
             },
           ],
@@ -131,7 +131,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
 ]
 `;
 
-exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 002: astar event 1`] = `
+exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 003: shiden event 1`] = `
 [
   {
     "data": {
@@ -168,7 +168,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 002: astar eve
 ]
 `;
 
-exports[`Polkadot & Astar > 002: Astar transfer DOT to Polkadot > 001: astar event 1`] = `
+exports[`Kusama & Shiden > 002: Shiden transfer DOT to Kusama > 001: shiden event 1`] = `
 [
   {
     "data": {
@@ -180,7 +180,7 @@ exports[`Polkadot & Astar > 002: Astar transfer DOT to Polkadot > 001: astar eve
 ]
 `;
 
-exports[`Polkadot & Astar > 002: Astar transfer DOT to Polkadot > 002: polkadot event 1`] = `
+exports[`Kusama & Shiden > 002: Shiden transfer DOT to Kusama > 002: kusama event 1`] = `
 [
   {
     "data": {
@@ -193,7 +193,7 @@ exports[`Polkadot & Astar > 002: Astar transfer DOT to Polkadot > 002: polkadot 
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 7200)",
-        "refTime": "(rounded 260000000)",
+        "refTime": "(rounded 300000000)",
       },
     },
     "method": "Processed",
