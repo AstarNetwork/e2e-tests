@@ -1,28 +1,27 @@
-import { expect } from "vitest";
-import { given } from "../../helpers";
+import { expect } from 'vitest'
+import { given } from '../../helpers'
 
-given('astar')('Number of slots adjusted based on price', async ({ networks: { astar }}) => {
-
+given('astar')('Number of slots adjusted based on price', async ({ networks: { astar } }) => {
   const advanceNextEra = async () => {
     const state = await astar.api.query.dappStaking.activeProtocolState<any>()
-    await astar.dev.newBlock({ count:1, unsafeBlockHeight: state.nextEraStart.toNumber() })
+    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: state.nextEraStart.toNumber() })
   }
 
-    // set price to $0.10
-    await astar.dev.setStorage({
-      priceAggregator: {
-        valuesCircularBuffer: {
-          head: 1,
-          buffer: [
-            100_000_000_000_000_000n // $0.10
-          ]
-        }
-      }
-    })
+  // set price to $0.10
+  await astar.dev.setStorage({
+    priceAggregator: {
+      valuesCircularBuffer: {
+        head: 1,
+        buffer: [
+          100_000_000_000_000_000n, // $0.10
+        ],
+      },
+    },
+  })
 
-    await advanceNextEra()
+  await advanceNextEra()
 
-    expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
+  expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
       {
         "numberOfSlots": "150",
         "rewardPortion": [
@@ -65,21 +64,21 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
       }
     `)
 
-    // set price to $0.50
-    await astar.dev.setStorage({
-      priceAggregator: {
-        valuesCircularBuffer: {
-          head: 1,
-          buffer: [
-            500_000_000_000_000_000n // $0.50
-          ]
-        }
-      }
-    })
+  // set price to $0.50
+  await astar.dev.setStorage({
+    priceAggregator: {
+      valuesCircularBuffer: {
+        head: 1,
+        buffer: [
+          500_000_000_000_000_000n, // $0.50
+        ],
+      },
+    },
+  })
 
-    await advanceNextEra()
+  await advanceNextEra()
 
-    expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
+  expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
       {
         "numberOfSlots": "550",
         "rewardPortion": [
@@ -122,21 +121,21 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
       }
     `)
 
-    // set price to $0.05
-    await astar.dev.setStorage({
-      priceAggregator: {
-        valuesCircularBuffer: {
-          head: 1,
-          buffer: [
-            50_000_000_000_000_000n // $0.05
-          ]
-        }
-      }
-    })
+  // set price to $0.05
+  await astar.dev.setStorage({
+    priceAggregator: {
+      valuesCircularBuffer: {
+        head: 1,
+        buffer: [
+          50_000_000_000_000_000n, // $0.05
+        ],
+      },
+    },
+  })
 
-    await advanceNextEra()
+  await advanceNextEra()
 
-    expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
+  expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
       {
         "numberOfSlots": "100",
         "rewardPortion": [
