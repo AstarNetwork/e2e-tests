@@ -14,7 +14,7 @@ jobs:
     strategy:
         fail-fast: false
         matrix:
-          tests: [xcm-transfer]
+          tests: [xcm-transfer, staking]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
