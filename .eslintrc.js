@@ -11,6 +11,7 @@ module.exports = {
     'plugin:import/typescript',
   ],
   rules: {
+    'import/no-named-as-default': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'sort-imports-es6-autofix/sort-imports-es6': 'error',
