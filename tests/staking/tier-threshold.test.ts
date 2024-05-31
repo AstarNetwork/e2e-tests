@@ -22,47 +22,47 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   await advanceNextEra()
 
   expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
-      {
-        "numberOfSlots": "150",
-        "rewardPortion": [
-          "25.00%",
-          "47.00%",
-          "25.00%",
-          "3.00%",
-        ],
-        "slotsPerTier": [
-          "7",
-          "30",
-          "45",
-          "67",
-        ],
-        "tierThresholds": [
-          {
-            "DynamicTvlAmount": {
-              "amount": "306,666,666,666,666,666,901,705,287",
-              "minimumAmount": "200,000,000,000,000,000,000,000,000",
-            },
+    {
+      "numberOfSlots": "150",
+      "rewardPortion": [
+        "25.00%",
+        "47.00%",
+        "25.00%",
+        "3.00%",
+      ],
+      "slotsPerTier": [
+        "7",
+        "30",
+        "45",
+        "67",
+      ],
+      "tierThresholds": [
+        {
+          "DynamicTvlAmount": {
+            "amount": "200,000,000,000,000,000,100,000,000",
+            "minimumAmount": "200,000,000,000,000,000,000,000,000",
           },
-          {
-            "DynamicTvlAmount": {
-              "amount": "76,666,666,666,666,666,725,426,320",
-              "minimumAmount": "50,000,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "DynamicTvlAmount": {
+            "amount": "50,000,000,000,000,000,025,000,000",
+            "minimumAmount": "50,000,000,000,000,000,000,000,000",
           },
-          {
-            "DynamicTvlAmount": {
-              "amount": "23,000,000,000,000,000,017,627,893",
-              "minimumAmount": "15,000,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "DynamicTvlAmount": {
+            "amount": "15,000,000,000,000,000,000,000,000",
+            "minimumAmount": "15,000,000,000,000,000,000,000,000",
           },
-          {
-            "FixedTvlAmount": {
-              "amount": "1,500,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "FixedTvlAmount": {
+            "amount": "1,500,000,000,000,000,000,000,000",
           },
-        ],
-      }
-    `)
+        },
+      ],
+    }
+  `)
 
   // set price to $0.50
   await astar.dev.setStorage({
@@ -136,45 +136,45 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   await advanceNextEra()
 
   expect((await astar.api.query.dappStaking.tierConfig()).toHuman()).toMatchInlineSnapshot(`
-      {
-        "numberOfSlots": "100",
-        "rewardPortion": [
-          "25.00%",
-          "47.00%",
-          "25.00%",
-          "3.00%",
-        ],
-        "slotsPerTier": [
-          "5",
-          "20",
-          "30",
-          "45",
-        ],
-        "tierThresholds": [
-          {
-            "DynamicTvlAmount": {
-              "amount": "1,100,000,000,000,000,000,000,000,000",
-              "minimumAmount": "200,000,000,000,000,000,000,000,000",
-            },
+    {
+      "numberOfSlots": "100",
+      "rewardPortion": [
+        "25.00%",
+        "47.00%",
+        "25.00%",
+        "3.00%",
+      ],
+      "slotsPerTier": [
+        "5",
+        "20",
+        "30",
+        "45",
+      ],
+      "tierThresholds": [
+        {
+          "DynamicTvlAmount": {
+            "amount": "300,000,000,000,000,000,000,000,000",
+            "minimumAmount": "200,000,000,000,000,000,000,000,000",
           },
-          {
-            "DynamicTvlAmount": {
-              "amount": "275,000,000,000,000,000,000,000,000",
-              "minimumAmount": "50,000,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "DynamicTvlAmount": {
+            "amount": "75,000,000,000,000,000,000,000,000",
+            "minimumAmount": "50,000,000,000,000,000,000,000,000",
           },
-          {
-            "DynamicTvlAmount": {
-              "amount": "82,500,000,000,000,000,000,000,000",
-              "minimumAmount": "15,000,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "DynamicTvlAmount": {
+            "amount": "20,000,000,000,000,000,000,000,000",
+            "minimumAmount": "15,000,000,000,000,000,000,000,000",
           },
-          {
-            "FixedTvlAmount": {
-              "amount": "1,500,000,000,000,000,000,000,000",
-            },
+        },
+        {
+          "FixedTvlAmount": {
+            "amount": "1,500,000,000,000,000,000,000,000",
           },
-        ],
-      }
-    `)
+        },
+      ],
+    }
+  `)
 })
