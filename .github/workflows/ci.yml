@@ -10,25 +10,12 @@ env:
   DB_PATH: ./db.sqlite
 
 jobs:
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #     with:
-  #       submodules: recursive
-  #   - name: Use Node.js
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: 18.x
-  #       cache: 'yarn'
-  #   - run: yarn --immutable
-  #   - run: yarn lint
   tests:
     timeout-minutes: 30
     strategy:
         fail-fast: false
         matrix:
-          tests: [xcm-transfer]
+          tests: [xcm-transfer, staking]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -38,13 +25,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 18.x
-    - name: Setup yarn
-      run: npm install -g yarn
-    - name: setup node env
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
         cache: 'yarn'
     - run: yarn --immutable
+    - run: yarn lint
     - run: yarn update-env
     - run: yarn test tests/${{ matrix.tests }}
