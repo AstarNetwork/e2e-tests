@@ -1865,7 +1865,7 @@ __metadata:
     lint-staged: "npm:^15.2.2"
     lodash: "npm:^4.17.21"
     prettier: "npm:^3.2.5"
-    tsx: "npm:^4.7.2"
+    tsx: "npm:^4.11.0"
     typescript: "npm:^5.3.3"
     unplugin-swc: "npm:^1.4.5"
     vitest: "npm:^1.4.0"
@@ -6091,9 +6091,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.7.2":
-  version: 4.10.3
-  resolution: "tsx@npm:4.10.3"
+"tsx@npm:^4.11.0":
+  version: 4.11.0
+  resolution: "tsx@npm:4.11.0"
   dependencies:
     esbuild: "npm:~0.20.2"
     fsevents: "npm:~2.3.3"
@@ -6103,7 +6103,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/37101b7181dd2f4b3576ba172aa435e58e895f2cb3a4157f7b4b44c27fb8114c6f7e3dafdcb01139a440aa841e908fecb108c15e83735cb22db87b63257768ec
+  checksum: 10/04fca21db8d518d103b05ab42b0196b9f8ab11769c475446eb5d56d19f313ddad357b98992ed5d96749472ffd459e0ae9ea2d5f0ebe8bbc27c611d1f6df6ec9b
   languageName: node
   linkType: hard
 
