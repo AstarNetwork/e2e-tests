@@ -1,0 +1,228 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemint ump messages 1`] = `
+[
+  {
+    "data": [
+      "ConcatenatedVersionedXcm",
+      {
+        "v3": [
+          {
+            "reserveAssetDeposited": [
+              {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x3": [
+                        {
+                          "parachain": 1000,
+                        },
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 1,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            "clearOrigin": null,
+          },
+          {
+            "buyExecution": {
+              "fees": {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x3": [
+                        {
+                          "parachain": 1000,
+                        },
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 1,
+                  },
+                },
+              },
+              "weightLimit": {
+                "unlimited": null,
+              },
+            },
+          },
+          {
+            "depositAsset": {
+              "assets": {
+                "wild": {
+                  "allCounted": 1,
+                },
+              },
+              "beneficiary": {
+                "interior": {
+                  "x1": {
+                    "accountId32": {
+                      "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
+                      "network": null,
+                    },
+                  },
+                },
+                "parents": 0,
+              },
+            },
+          },
+          {
+            "setTopic": "(redacted)",
+          },
+        ],
+      },
+    ],
+    "recipient": 2006,
+  },
+]
+`;
+
+exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar event 1`] = `
+[
+  {
+    "data": {
+      "messageHash": "(hash)",
+      "messageId": "(hash)",
+      "weight": {
+        "proofSize": "(rounded 11000)",
+        "refTime": "(rounded 990000000)",
+      },
+    },
+    "method": "Success",
+    "section": "xcmpQueue",
+  },
+]
+`;
+
+exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar ump messages 1`] = `
+[
+  {
+    "data": [
+      "ConcatenatedVersionedXcm",
+      {
+        "v2": [
+          {
+            "withdrawAsset": [
+              {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x2": [
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 0,
+                  },
+                },
+              },
+            ],
+          },
+          {
+            "clearOrigin": null,
+          },
+          {
+            "buyExecution": {
+              "fees": {
+                "fun": {
+                  "fungible": 10000000,
+                },
+                "id": {
+                  "concrete": {
+                    "interior": {
+                      "x2": [
+                        {
+                          "palletInstance": 50,
+                        },
+                        {
+                          "generalIndex": 1984,
+                        },
+                      ],
+                    },
+                    "parents": 0,
+                  },
+                },
+              },
+              "weightLimit": {
+                "unlimited": null,
+              },
+            },
+          },
+          {
+            "depositAsset": {
+              "assets": {
+                "wild": {
+                  "all": null,
+                },
+              },
+              "beneficiary": {
+                "interior": {
+                  "x1": {
+                    "accountId32": {
+                      "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
+                      "network": {
+                        "any": null,
+                      },
+                    },
+                  },
+                },
+                "parents": 0,
+              },
+              "maxAssets": 1,
+            },
+          },
+        ],
+      },
+    ],
+    "recipient": 1000,
+  },
+]
+`;
+
+exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 002: statemint event 1`] = `
+[
+  {
+    "data": {
+      "id": "(hash)",
+      "origin": {
+        "Sibling": "(rounded 2000)",
+      },
+      "success": true,
+      "weightUsed": {
+        "proofSize": "(rounded 7200)",
+        "refTime": "(rounded 320000000)",
+      },
+    },
+    "method": "Processed",
+    "section": "messageQueue",
+  },
+]
+`;
