@@ -13,6 +13,10 @@
 		"test:ui": "LOG_LEVEL=error vitest --ui",
 		"update-env": "tsx scripts/update-env.ts"
 	},
+	"resolutions": {
+		"@polkadot/api": "^11.2.1",
+		"@polkadot/types": "^11.2.1"
+	},
 	"dependencies": {
 		"@acala-network/chopsticks": "^0.10.2",
 		"@acala-network/chopsticks-testing": "^0.10.2",
