@@ -1345,10 +1345,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.17.0":
-  version: 4.17.3
-  resolution: "@types/lodash@npm:4.17.3"
-  checksum: 10/4df84f928f17065adaddf4d07c838bdf471e8fc5582e0c26419e044e32536562675c4875a666ad384cd41b927b09fc72e114d0b889bd716dc9819c5489b4da6f
+"@types/lodash@npm:^4.17.6":
+  version: 4.17.6
+  resolution: "@types/lodash@npm:4.17.6"
+  checksum: 10/6d3a68b3e795381f4aaf946855134d24eeb348ad5d66e9a44461d30026da82b215d55b92b70486d811ca45d54d4ab956aa2dced37fd04e19d49afe160ae3da2e
   languageName: node
   linkType: hard
 
@@ -1855,7 +1855,7 @@ __metadata:
     "@acala-network/chopsticks-testing": "npm:^0.12.2"
     "@polkadot/api": "npm:^11.2.1"
     "@swc/core": "npm:^1.4.12"
-    "@types/lodash": "npm:^4.17.0"
+    "@types/lodash": "npm:^4.17.6"
     "@types/node": "npm:^20.12.5"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
