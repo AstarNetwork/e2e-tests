@@ -4,10 +4,10 @@
 	"author": "Stake Technologies <devops@stake.co.jp>",
 	"license": "MIT",
 	"private": true,
-	"packageManager": "yarn@4.1.1",
+	"packageManager": "yarn@4.3.1",
 	"scripts": {
-		"lint": "tsc --noEmit && eslint . --ext .js,.ts && prettier --check .",
-		"fix": "eslint . --ext .js,.ts --fix && prettier -w .",
+		"lint": "tsc --noEmit && eslint && prettier --check .",
+		"fix": "eslint --fix && prettier -w .",
 		"prepare": "husky install",
 		"test": "LOG_LEVEL=error vitest",
 		"test:ui": "LOG_LEVEL=error vitest --ui",
@@ -17,29 +17,26 @@
 		"@acala-network/chopsticks": "^0.12.2",
 		"@acala-network/chopsticks-testing": "^0.12.2",
 		"@polkadot/api": "^11.2.1",
-		"@swc/core": "^1.4.12",
-		"axios": "^1.6.8",
+		"@swc/core": "^1.6.13",
+		"axios": "^1.7.2",
 		"dotenv": "^16.4.5",
 		"lodash": "^4.17.21",
-		"typescript": "5.3",
-		"unplugin-swc": "^1.4.5",
-		"vitest": "^1.4.0"
+		"typescript": "5.5.3",
+		"unplugin-swc": "^1.5.1",
+		"vitest": "^1.6.0"
 	},
 	"devDependencies": {
-		"@types/lodash": "^4.17.0",
-		"@types/node": "^20.12.5",
-		"@typescript-eslint/eslint-plugin": "^6.21.0",
-		"@typescript-eslint/parser": "^6.21.0",
-		"@vitest/ui": "^1.4.0",
-		"eslint": "^8.57.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-import-resolver-typescript": "^3.6.1",
-		"eslint-plugin-import": "^2.29.1",
-		"eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+		"@eslint/js": "^9.6.0",
+		"@types/eslint__js": "^8.42.3",
+		"@types/lodash": "^4.17.6",
+		"@types/node": "^20.14.10",
+		"@vitest/ui": "^1.6.0",
+		"eslint": "^9.6.0",
 		"husky": "^9.0.11",
-		"lint-staged": "^15.2.2",
-		"prettier": "^3.2.5",
-		"tsx": "^4.7.2"
+		"lint-staged": "^15.2.7",
+		"prettier": "^3.3.2",
+		"tsx": "^4.16.2",
+		"typescript-eslint": "^7.15.0"
 	},
 	"prettier": {
 		"tabWidth": 2,
@@ -47,7 +44,6 @@
 		"singleQuote": true
 	},
 	"lint-staged": {
-		"*.ts": "eslint --cache --fix",
-		"*.{ts,css}": "prettier --write"
+		"*.{ts,js}": "eslint --cache --fix && prettier --write"
 	}
 }
