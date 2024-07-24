@@ -25,11 +25,16 @@ jobs:
       with:
         node-version: 18.x
         cache: 'yarn'
+
     - run: yarn --immutable
+
     - run: yarn update-env
-    - run: yarn test tests/${{ matrix.tests }}
+
+    - id: test
+      run: yarn test tests/${{ matrix.tests }}
+
     - uses: ravsamhq/notify-slack-action@v2
-      if: ${{ failure() }}
+      if: ${{ failure() && !contains(steps.test.outputs.stdout, 'Test timed out') }}
       with:
         status: ${{ job.status }}
       env:
