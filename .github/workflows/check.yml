@@ -30,11 +30,13 @@ jobs:
 
     - run: yarn update-env
 
-    - id: test
-      run: yarn test tests/${{ matrix.tests }}
+    - run: yarn test tests/${{ matrix.tests }} | tee output.txt
+
+    - if: ${{ failure() }}
+      run: grep -q "Test timed out" output.txt && echo "TIMEOUT=true" >> $GITHUB_ENV
 
     - uses: ravsamhq/notify-slack-action@v2
-      if: ${{ failure() && !contains(steps.test.outputs.stdout, 'Test timed out') }}
+      if: ${{ failure() && env.TIMEOUT != 'true' }}
       with:
         status: ${{ job.status }}
       env:
