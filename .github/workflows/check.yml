@@ -30,7 +30,7 @@ jobs:
 
     - run: yarn update-env
 
-    - run: yarn test tests/${{ matrix.tests }} | tee output.txt
+    - run: yarn test tests/${{ matrix.tests }} | tee output.txt ; exit ${PIPESTATUS[0]}
 
     - if: ${{ failure() }}
       run: grep -q "Test timed out" output.txt && echo "TIMEOUT=true" >> $GITHUB_ENV
