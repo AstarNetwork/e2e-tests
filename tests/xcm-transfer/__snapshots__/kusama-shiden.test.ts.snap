@@ -135,35 +135,16 @@ exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 003: shiden even
 [
   {
     "data": {
-      "count": 1,
-    },
-    "method": "DownwardMessagesReceived",
-    "section": "parachainSystem",
-  },
-  {
-    "data": {
-      "messageHash": "(hash)",
-      "messageId": "(hash)",
-      "outcome": {
-        "Complete": {
-          "proofSize": "(rounded 11000)",
-          "refTime": "(rounded 990000000)",
-        },
-      },
-    },
-    "method": "ExecutedDownward",
-    "section": "dmpQueue",
-  },
-  {
-    "data": {
-      "dmqHead": "(hash)",
+      "id": "(hash)",
+      "origin": "Parent",
+      "success": true,
       "weightUsed": {
         "proofSize": "(rounded 11000)",
         "refTime": "(rounded 990000000)",
       },
     },
-    "method": "DownwardMessagesProcessed",
-    "section": "parachainSystem",
+    "method": "Processed",
+    "section": "messageQueue",
   },
 ]
 `;
