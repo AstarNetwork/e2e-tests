@@ -31,8 +31,8 @@ describe('Astar & AssetHub', () => {
 
       const bobBalance = await query.assets(astarUtil.usdt)(astar, bob.address)
       expect(bobBalance.unwrap().balance.toNumber()).closeTo(
-        10e6,
-        1e5, // some fee
+        10_000_000,
+        20_000, // some fee
         'Expected amount was not received',
       )
 
@@ -63,8 +63,8 @@ describe('Astar & AssetHub', () => {
 
       const bobBalance = await query.assets(statemintUtil.usdtIndex)(statemint, bob.address)
       expect(bobBalance.unwrap().balance.toNumber()).closeTo(
-        10e6,
-        1e5, // some fee
+        10_000_000,
+        40_000, // some fee
         'Expected amount was not received',
       )
 

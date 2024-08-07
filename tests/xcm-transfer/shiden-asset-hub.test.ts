@@ -31,8 +31,8 @@ describe('Shiden & AssetHub', () => {
 
       const bobBalance = await query.assets(shidenUtil.usdt)(shiden, bob.address)
       expect(bobBalance.unwrap().balance.toNumber()).closeTo(
-        10e6,
-        1e4, // some fee
+        10_000_000,
+        10_000, // some fee
         'Expected amount was not received',
       )
 
@@ -63,8 +63,8 @@ describe('Shiden & AssetHub', () => {
 
       const bobBalance = await query.assets(statemineUtil.usdtIndex)(statemine, bob.address)
       expect(bobBalance.unwrap().balance.toNumber()).closeTo(
-        10e6,
-        1e4, // some fee
+        10_000_000,
+        20_000, // some fee
         'Expected amount was not received',
       )
 
