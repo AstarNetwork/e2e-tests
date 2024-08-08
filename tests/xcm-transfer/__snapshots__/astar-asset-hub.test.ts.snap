@@ -6,7 +6,7 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
     "data": [
       "ConcatenatedVersionedXcm",
       {
-        "v3": [
+        "v4": [
           {
             "reserveAssetDeposited": [
               {
@@ -14,22 +14,20 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
                   "fungible": 10000000,
                 },
                 "id": {
-                  "concrete": {
-                    "interior": {
-                      "x3": [
-                        {
-                          "parachain": 1000,
-                        },
-                        {
-                          "palletInstance": 50,
-                        },
-                        {
-                          "generalIndex": 1984,
-                        },
-                      ],
-                    },
-                    "parents": 1,
+                  "interior": {
+                    "x3": [
+                      {
+                        "parachain": 1000,
+                      },
+                      {
+                        "palletInstance": 50,
+                      },
+                      {
+                        "generalIndex": 1984,
+                      },
+                    ],
                   },
+                  "parents": 1,
                 },
               },
             ],
@@ -44,22 +42,20 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
                   "fungible": 10000000,
                 },
                 "id": {
-                  "concrete": {
-                    "interior": {
-                      "x3": [
-                        {
-                          "parachain": 1000,
-                        },
-                        {
-                          "palletInstance": 50,
-                        },
-                        {
-                          "generalIndex": 1984,
-                        },
-                      ],
-                    },
-                    "parents": 1,
+                  "interior": {
+                    "x3": [
+                      {
+                        "parachain": 1000,
+                      },
+                      {
+                        "palletInstance": 50,
+                      },
+                      {
+                        "generalIndex": 1984,
+                      },
+                    ],
                   },
+                  "parents": 1,
                 },
               },
               "weightLimit": {
@@ -76,12 +72,14 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
               },
               "beneficiary": {
                 "interior": {
-                  "x1": {
-                    "accountId32": {
-                      "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
-                      "network": null,
+                  "x1": [
+                    {
+                      "accountId32": {
+                        "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
+                        "network": null,
+                      },
                     },
-                  },
+                  ],
                 },
                 "parents": 0,
               },
@@ -102,15 +100,18 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar ev
 [
   {
     "data": {
-      "messageHash": "(hash)",
-      "messageId": "(hash)",
-      "weight": {
+      "id": "(hash)",
+      "origin": {
+        "Sibling": 1000,
+      },
+      "success": true,
+      "weightUsed": {
         "proofSize": "(rounded 11000)",
         "refTime": "(rounded 990000000)",
       },
     },
-    "method": "Success",
-    "section": "xcmpQueue",
+    "method": "Processed",
+    "section": "messageQueue",
   },
 ]
 `;
