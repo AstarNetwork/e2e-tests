@@ -1,17 +1,18 @@
 import { expect } from 'vitest'
-import { u16 } from '@polkadot/types'
+import { Perbill } from '@polkadot/types/interfaces'
+import { Struct, Vec, u16, u128 } from '@polkadot/types'
 import { given } from '../../helpers'
 
 const TIER_DERIVATION_PALLET_VERSION = 8
 
-type TierConfig = {
-  rewardPortion: string[]
-  slotsPerTier: string[]
-  tierThresholds: string[]
+interface TiersConfigurationV8 extends Struct {
+  readonly slotsPerTier: Vec<u16>
+  readonly rewardPortion: Vec<Perbill>
+  readonly tierThresholds: Vec<u128>
 }
 
-const calculateNumberOfSlots = (slotsPerTier: string[]): number => {
-  return slotsPerTier.reduce((acc, val) => acc + Number(val), 0)
+const calculateNumberOfSlots = (slotsPerTier: u16[]): number => {
+  return slotsPerTier.reduce((acc, val) => acc + val.toNumber(), 0)
 }
 
 given('astar')('Number of slots adjusted based on price', async ({ networks: { astar } }) => {
@@ -86,7 +87,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
 
     await advanceNextEra()
 
-    let config = (await astar.api.query.dappStaking.tierConfig()).toHuman() as TierConfig
+    let config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
     let numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(149)
@@ -127,7 +128,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
 
     await advanceNextEra()
 
-    config = (await astar.api.query.dappStaking.tierConfig()).toHuman() as TierConfig
+    config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
     numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(549)
@@ -168,7 +169,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
 
     await advanceNextEra()
 
-    config = (await astar.api.query.dappStaking.tierConfig()).toHuman() as TierConfig
+    config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
     numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(100)
