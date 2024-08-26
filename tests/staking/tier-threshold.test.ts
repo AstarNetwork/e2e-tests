@@ -91,7 +91,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
     let numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(149)
-    expect(config).toMatchInlineSnapshot(`
+    expect(config.toHuman()).toMatchInlineSnapshot(`
     {
       "rewardPortion": [
         "25.00%",
@@ -132,7 +132,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
     numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(549)
-    expect(config).toMatchInlineSnapshot(`
+    expect(config.toHuman()).toMatchInlineSnapshot(`
     {
       "rewardPortion": [
         "25.00%",
@@ -173,7 +173,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
     numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
     expect(numberOfSlots).toEqual(100)
-    expect(config).toMatchInlineSnapshot(`
+    expect(config.toHuman()).toMatchInlineSnapshot(`
     {
       "rewardPortion": [
         "25.00%",
