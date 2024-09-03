@@ -96,25 +96,7 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
 ]
 `;
 
-exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar event 1`] = `
-[
-  {
-    "data": {
-      "id": "(hash)",
-      "origin": {
-        "Sibling": 1000,
-      },
-      "success": true,
-      "weightUsed": {
-        "proofSize": "(rounded 11000)",
-        "refTime": "(rounded 990000000)",
-      },
-    },
-    "method": "Processed",
-    "section": "messageQueue",
-  },
-]
-`;
+exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar event 1`] = `[]`;
 
 exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar ump messages 1`] = `
 [
