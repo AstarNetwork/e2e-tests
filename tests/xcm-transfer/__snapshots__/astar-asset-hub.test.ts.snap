@@ -106,8 +106,8 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar ev
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 11000)",
-        "refTime": "(rounded 990000000)",
+        "proofSize": "(rounded 9300)",
+        "refTime": "(rounded 890000000)",
       },
     },
     "method": "Processed",
