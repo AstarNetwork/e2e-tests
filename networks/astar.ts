@@ -12,10 +12,13 @@ export default {
   },
   kusama: {
     name: 'shiden' as const,
-    endpoint: 'wss://shiden-rpc.dwellir.com',
+    endpoint: 'wss://rpc.shiden.astar.network',
     relayToken: '340282366920938463463374607431768211455',
   },
   config: ({ alice, relayToken }) => ({
+    options: {
+      processQueuedMessages: false, // Astar & Shiden handles queued messages on-idle, no need to build extra block
+    },
     storages: {
       System: {
         account: [[[alice.address], { providers: 1, data: { free: 10n * 10n ** 18n } }]],

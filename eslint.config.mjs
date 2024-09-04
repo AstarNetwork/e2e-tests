@@ -25,6 +25,7 @@ export default tseslint.config(
 			'@typescript-eslint/explicit-module-boundary-types': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
 			'@typescript-eslint/ban-ts-comment': 'off',
+			'@typescript-eslint/unbound-method': 'off',
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{
