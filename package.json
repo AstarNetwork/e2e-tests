@@ -14,8 +14,8 @@
 		"update-env": "tsx scripts/update-env.ts"
 	},
 	"dependencies": {
-		"@acala-network/chopsticks": "^0.14.1",
-		"@acala-network/chopsticks-testing": "^0.14.1",
+		"@acala-network/chopsticks": "^0.14.2-1",
+		"@acala-network/chopsticks-testing": "^0.14.2-1",
 		"@polkadot/api": "^12.2.1",
 		"@swc/core": "^1.6.13",
 		"axios": "^1.7.2",
