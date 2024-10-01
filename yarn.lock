@@ -1557,10 +1557,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.17.6":
-  version: 4.17.6
-  resolution: "@types/lodash@npm:4.17.6"
-  checksum: 10/6d3a68b3e795381f4aaf946855134d24eeb348ad5d66e9a44461d30026da82b215d55b92b70486d811ca45d54d4ab956aa2dced37fd04e19d49afe160ae3da2e
+"@types/lodash@npm:^4.17.9":
+  version: 4.17.9
+  resolution: "@types/lodash@npm:4.17.9"
+  checksum: 10/49e35caaf668686be0bad9e9bef88456903a21999d3fd8bf91c302e0d5328398fb59fee793d0afbaf6edeca1b46c3e8109899d85ff3a433075178f1ab693e597
   languageName: node
   linkType: hard
 
@@ -1961,7 +1961,7 @@ __metadata:
     "@polkadot/api": "npm:^12.2.1"
     "@swc/core": "npm:^1.6.13"
     "@types/eslint__js": "npm:^8.42.3"
-    "@types/lodash": "npm:^4.17.6"
+    "@types/lodash": "npm:^4.17.9"
     "@types/node": "npm:^22"
     "@vitest/ui": "npm:^2.0"
     axios: "npm:^1.7.2"
