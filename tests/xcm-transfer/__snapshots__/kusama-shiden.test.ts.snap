@@ -158,7 +158,7 @@ exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 003: shiden even
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 880000000)",
+        "refTime": "(rounded 890000000)",
       },
     },
     "method": "Processed",

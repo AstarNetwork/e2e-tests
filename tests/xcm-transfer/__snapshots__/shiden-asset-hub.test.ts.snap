@@ -107,7 +107,7 @@ exports[`Shiden & AssetHub > 001: AssetHub transfer USDT to Shiden > 002: shiden
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 880000000)",
+        "refTime": "(rounded 890000000)",
       },
     },
     "method": "Processed",
