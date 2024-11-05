@@ -4,7 +4,7 @@
 	"author": "Stake Technologies <devops@stake.co.jp>",
 	"license": "MIT",
 	"private": true,
-	"packageManager": "yarn@4.4.1",
+	"packageManager": "yarn@4.5.1",
 	"scripts": {
 		"lint": "tsc --noEmit && eslint && prettier --check .",
 		"fix": "eslint --fix && prettier -w .",
@@ -14,9 +14,9 @@
 		"update-env": "tsx scripts/update-env.ts"
 	},
 	"dependencies": {
-		"@acala-network/chopsticks": "^0.14.2-1",
-		"@acala-network/chopsticks-testing": "^0.14.2-1",
-		"@polkadot/api": "^12.2.1",
+		"@acala-network/chopsticks": "^1.0.1-1",
+		"@acala-network/chopsticks-testing": "^1.0.1-1",
+		"@polkadot/api": "^14.2.3",
 		"@swc/core": "^1.6.13",
 		"axios": "^1.7.2",
 		"dotenv": "^16.4.5",
