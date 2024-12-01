@@ -12,6 +12,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acala-network/chopsticks-core@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@acala-network/chopsticks-core@npm:1.0.1"
+  dependencies:
+    "@acala-network/chopsticks-executor": "npm:1.0.1"
+    "@polkadot/rpc-provider": "npm:^14.0.1"
+    "@polkadot/types": "npm:^14.0.1"
+    "@polkadot/types-codec": "npm:^14.0.1"
+    "@polkadot/types-known": "npm:^14.0.1"
+    "@polkadot/util": "npm:^13.2.2"
+    "@polkadot/util-crypto": "npm:^13.2.2"
+    comlink: "npm:^4.4.1"
+    eventemitter3: "npm:^5.0.1"
+    lodash: "npm:^4.17.21"
+    lru-cache: "npm:^11.0.1"
+    pino: "npm:^9.5.0"
+    pino-pretty: "npm:^11.3.0"
+    rxjs: "npm:^7.8.1"
+    zod: "npm:^3.23.8"
+  checksum: 10/a81c3a1a964eda7a07e1794956efbf2f466d9a4cc9d1812dca1fb9932568a443afeea5f1b6b5de03960424da46b577a7cc40bb851c0083a0c95ff1a4bde2519f
+  languageName: node
+  linkType: hard
+
 "@acala-network/chopsticks-core@npm:1.0.1-1":
   version: 1.0.1-1
   resolution: "@acala-network/chopsticks-core@npm:1.0.1-1"
@@ -35,6 +58,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@acala-network/chopsticks-db@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@acala-network/chopsticks-db@npm:1.0.1"
+  dependencies:
+    "@acala-network/chopsticks-core": "npm:1.0.1"
+    "@polkadot/util": "npm:^13.2.2"
+    idb: "npm:^8.0.0"
+    sqlite3: "npm:^5.1.7"
+    typeorm: "npm:^0.3.20"
+  checksum: 10/c3f33f1b1740a80a655aac2d07d3d7f9e64cc5816f02ab80fb06181719b416e2d3e6a4e1eb04e696b836317278e32f72ad198c8ce0b491d371298d5ae1b85f61
+  languageName: node
+  linkType: hard
+
 "@acala-network/chopsticks-db@npm:1.0.1-1":
   version: 1.0.1-1
   resolution: "@acala-network/chopsticks-db@npm:1.0.1-1"
@@ -55,6 +91,16 @@ __metadata:
     "@polkadot/util": "npm:^13.2.2"
     "@polkadot/wasm-util": "npm:^7.4.1"
   checksum: 10/e4f50cf0e9908a7c03d996b999d6f7734932dac31ef4e014f339602f9c2065492a3ef1ed5d22e0f8fc2bcea4e35bdfa77a6cbba8d96001cfec485a18de981bf2
+  languageName: node
+  linkType: hard
+
+"@acala-network/chopsticks-executor@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@acala-network/chopsticks-executor@npm:1.0.1"
+  dependencies:
+    "@polkadot/util": "npm:^13.2.2"
+    "@polkadot/wasm-util": "npm:^7.4.1"
+  checksum: 10/d9b0b1b39d5882d35a3ddcff67169e0541a6112dd1df1d3c05a4e097ee1c3fe23a463c7447b7f8bffa10bf4ac6c84c789ec7fcea9b42fa6358a59aaa9f27c695
   languageName: node
   linkType: hard
 
@@ -84,7 +130,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@acala-network/chopsticks@npm:1.0.1-1, @acala-network/chopsticks@npm:^1.0.1-1":
+"@acala-network/chopsticks@npm:1.0.1-1":
   version: 1.0.1-1
   resolution: "@acala-network/chopsticks@npm:1.0.1-1"
   dependencies:
@@ -110,6 +156,35 @@ __metadata:
   bin:
     chopsticks: ./chopsticks.cjs
   checksum: 10/d76c38b9df18c435b961d004234fb533acc3f0b88273b7b8911b781ed533a3980ba8f6e3db7b4906cf102156c74ebaaa30ea5ec4ce0006a59c65f38117788d00
+  languageName: node
+  linkType: hard
+
+"@acala-network/chopsticks@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@acala-network/chopsticks@npm:1.0.1"
+  dependencies:
+    "@acala-network/chopsticks-core": "npm:1.0.1"
+    "@acala-network/chopsticks-db": "npm:1.0.1"
+    "@pnpm/npm-conf": "npm:^2.3.1"
+    "@polkadot/api": "npm:^14.0.1"
+    "@polkadot/api-augment": "npm:^14.0.1"
+    "@polkadot/rpc-provider": "npm:^14.0.1"
+    "@polkadot/types": "npm:^14.0.1"
+    "@polkadot/util": "npm:^13.2.2"
+    "@polkadot/util-crypto": "npm:^13.2.2"
+    axios: "npm:^1.7.7"
+    comlink: "npm:^4.4.1"
+    dotenv: "npm:^16.4.5"
+    global-agent: "npm:^3.0.0"
+    js-yaml: "npm:^4.1.0"
+    jsondiffpatch: "npm:^0.5.0"
+    lodash: "npm:^4.17.21"
+    ws: "npm:^8.18.0"
+    yargs: "npm:^17.7.2"
+    zod: "npm:^3.23.8"
+  bin:
+    chopsticks: ./chopsticks.cjs
+  checksum: 10/9ba38ee6297538597b1ad3e5b187ca448eede33eb502bad23ff980854007655d3a00d4b6b8e52f6715c7c9927bf3120c2104280e0442041608c6474d64932cb6
   languageName: node
   linkType: hard
 
@@ -1985,7 +2060,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "astar-e2e-tests@workspace:."
   dependencies:
-    "@acala-network/chopsticks": "npm:^1.0.1-1"
+    "@acala-network/chopsticks": "npm:^1.0.1"
     "@acala-network/chopsticks-testing": "npm:^1.0.1-1"
     "@eslint/js": "npm:^9.14.0"
     "@polkadot/api": "npm:^14.2.3"
