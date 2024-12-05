@@ -7,6 +7,7 @@ export default defineConfig({
 		hookTimeout: 300_000,
 		testTimeout: 300_000,
 		pool: 'forks',
+		poolOptions: { forks: { singleFork: !!process.env.GITHUB_ACTIONS } },
 		passWithNoTests: true,
 		reporters: process.env.GITHUB_ACTIONS ? ['basic', 'github-actions'] : ['verbose'],
 	},
