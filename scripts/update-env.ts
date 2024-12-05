@@ -28,7 +28,7 @@ const main = async () => {
           const blockNumber = header.number.toNumber()
           return `${name.toUpperCase()}_BLOCK_NUMBER=${blockNumber}`
         } catch (e: any) {
-          throw new Error(`${endpoint} ${e.message}`)
+          throw new Error(`${JSON.stringify(endpoint)} ${e.message}`)
         }
       }
       blockNumbers.push(fn())

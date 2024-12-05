@@ -7,12 +7,12 @@ export type Vars = {
 export default {
   polkadot: {
     name: 'astar' as const,
-    endpoint: 'wss://rpc.astar.network',
+    endpoint: ['wss://rpc.astar.network', 'wss://astar-rpc.dwellir.com'],
     relayToken: '340282366920938463463374607431768211455',
   },
   kusama: {
     name: 'shiden' as const,
-    endpoint: 'wss://rpc.shiden.astar.network',
+    endpoint: ['wss://rpc.shiden.astar.network', 'wss://shiden-rpc.dwellir.com'],
     relayToken: '340282366920938463463374607431768211455',
   },
   config: ({ alice, relayToken }) => ({
