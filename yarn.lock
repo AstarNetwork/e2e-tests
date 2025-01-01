@@ -1576,12 +1576,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.10.1":
+"@types/node@npm:*":
   version: 22.10.1
   resolution: "@types/node@npm:22.10.1"
   dependencies:
     undici-types: "npm:~6.20.0"
   checksum: 10/c802a526da2f3fa3ccefd00a71244e7cb825329951719e79e8fec62b1dbc2855388c830489770611584665ce10be23c05ed585982038b24924e1ba2c2cce03fd
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.10.3":
+  version: 22.10.3
+  resolution: "@types/node@npm:22.10.3"
+  dependencies:
+    undici-types: "npm:~6.20.0"
+  checksum: 10/c63bd7800b82a53efd3fc0e115d045ae539eaa6367a7804fc17db84a311995a2228b8dce3e8eed089b4f91ae28224cfcf86086ff1ecf48a16c3b9efc03a725f8
   languageName: node
   linkType: hard
 
@@ -1999,7 +2008,7 @@ __metadata:
     "@swc/core": "npm:^1.10.0"
     "@types/eslint__js": "npm:^8.42.3"
     "@types/lodash": "npm:^4.17.13"
-    "@types/node": "npm:^22.10.1"
+    "@types/node": "npm:^22.10.3"
     "@vitest/ui": "npm:^2.1.8"
     axios: "npm:^1.7.9"
     dotenv: "npm:^16.4.7"
