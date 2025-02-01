@@ -497,10 +497,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.16.0, @eslint/js@npm:^9.16.0":
+"@eslint/js@npm:9.16.0":
   version: 9.16.0
   resolution: "@eslint/js@npm:9.16.0"
   checksum: 10/122da09b6a2c6a92d68be26146af1da17d9d4e03cf9435a874d341f18519122eef9ed229e52a1b781dc5987239754954e80a0b11bbe8f65df96e9ef8f3b438ad
+  languageName: node
+  linkType: hard
+
+"@eslint/js@npm:^9.19.0":
+  version: 9.19.0
+  resolution: "@eslint/js@npm:9.19.0"
+  checksum: 10/d8133a83330676d5f0827713af2e9bbf35530631a93520fb59ead6b827a325c54fdd7ad99f2158f895fb393c47bbc55dfdaa945998a647f3b9230f1d5324a626
   languageName: node
   linkType: hard
 
@@ -1994,7 +2001,7 @@ __metadata:
   dependencies:
     "@acala-network/chopsticks": "npm:^1.0.1"
     "@acala-network/chopsticks-testing": "npm:^1.0.1"
-    "@eslint/js": "npm:^9.16.0"
+    "@eslint/js": "npm:^9.19.0"
     "@polkadot/api": "npm:^14.0"
     "@swc/core": "npm:^1.10.0"
     "@types/eslint__js": "npm:^8.42.3"
