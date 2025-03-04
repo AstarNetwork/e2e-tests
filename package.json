@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@acala-network/chopsticks": "^1.0",
 		"@acala-network/chopsticks-testing": "^1.0",
-		"@polkadot/api": "^15.0",
+		"@polkadot/api": "^15.7",
 		"@swc/core": "^1.10.0",
 		"axios": "^1.7.9",
 		"dotenv": "^16.4.7",
