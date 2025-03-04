@@ -9,7 +9,6 @@ export default defineConfig({
 		pool: 'forks',
 		poolOptions: { forks: { singleFork: !!process.env.GITHUB_ACTIONS } },
 		passWithNoTests: true,
-		reporters: process.env.GITHUB_ACTIONS ? ['basic', 'github-actions'] : ['verbose'],
 	},
 	plugins: [swc.vite()],
 })
