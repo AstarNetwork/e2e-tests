@@ -21,7 +21,7 @@
 		"axios": "^1.7.9",
 		"dotenv": "^16.4.7",
 		"lodash": "^4.17.21",
-		"typescript": "5.7.2",
+		"typescript": "5.8.2",
 		"unplugin-swc": "^1.5.1",
 		"vitest": "^3.0"
 	},
