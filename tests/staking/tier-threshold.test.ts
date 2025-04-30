@@ -44,24 +44,42 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
           450000, // 45%
         ],
         // Perbill percentages
-        // percentages below are calulated based on total issuance at the time when dApp staking v3 was launched (8.4B)
+        // percentages below are calculated based on total issuance at the time when dApp staking v3 was launched (8.4B)
         tierThresholds: [
           {
             DynamicPercentage: {
               percentage: 35_700_000, // 3.57%
               minimumRequiredPercentage: 23_800_000, // 2.38%
+              // new parameter on version 10
+              ...(palletVersion >= 10
+                ? {
+                    maximumPossiblePercentage: 35_700_000, // 3.57%
+                  }
+                : {}),
             },
           },
           {
             DynamicPercentage: {
               percentage: 8_900_000, // 0.89%
               minimumRequiredPercentage: 6_000_000, // 0.6%
+              // new parameter on version 10
+              ...(palletVersion >= 10
+                ? {
+                    maximumPossiblePercentage: 8_900_000, // 0.89%
+                  }
+                : {}),
             },
           },
           {
             DynamicPercentage: {
               percentage: 2_380_000, // 0.238%
               minimumRequiredPercentage: 1_790_000, // 0.179%
+              // new parameter on version 10
+              ...(palletVersion >= 10
+                ? {
+                    maximumPossiblePercentage: 2_380_000, // 0.238%
+                  }
+                : {}),
             },
           },
           {
@@ -70,8 +88,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
             },
           },
         ],
-        // new parameter on version 9
-        ...(palletVersion >= 9 ? { slotNumberArgs: [1000, 50] } : {}),
+        slotNumberArgs: [1000, 50],
       },
     },
     priceAggregator: {
@@ -154,13 +171,13 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
     }
   `)
 
-  // set price to $0.05
+  // set price to $0.01
   await astar.dev.setStorage({
     priceAggregator: {
       valuesCircularBuffer: {
         head: 1,
         buffer: [
-          50_000_000_000_000_000n, // $0.05
+          10_000_000_000_000_000n, // $0.01
         ],
       },
     },
@@ -171,27 +188,52 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
   numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
-  expect(numberOfSlots).toEqual(100)
-  expect(config.toHuman()).toMatchInlineSnapshot(`
-    {
-      "rewardPortion": [
-        "25.00%",
-        "47.00%",
-        "25.00%",
-        "3.00%",
-      ],
-      "slotsPerTier": [
-        "5",
-        "20",
-        "30",
-        "45",
-      ],
-      "tierThresholds": [
-        "299,880,001,946,038,151,514,954,140",
-        "74,760,000,485,146,766,063,952,153",
-        "19,992,000,129,735,876,767,663,609",
-        "1,680,000,010,902,174,518,291,060",
-      ],
-    }
-  `)
+  expect(numberOfSlots).toEqual(60)
+  if (palletVersion >= 10) {
+    expect(config.toHuman()).toMatchInlineSnapshot(`
+      {
+        "rewardPortion": [
+          "25.00%",
+          "47.00%",
+          "25.00%",
+          "3.00%",
+        ],
+        "slotsPerTier": [
+          "3",
+          "12",
+          "18",
+          "27",
+        ],
+        "tierThresholds": [
+          "299,880,001,946,038,151,514,954,140",
+          "74,760,000,485,146,766,063,952,153",
+          "19,992,000,129,735,876,767,663,609",
+          "1,680,000,010,902,174,518,291,060",
+        ],
+      }
+    `)
+  } else {
+    expect(config.toHuman()).toMatchInlineSnapshot(`
+      {
+        "rewardPortion": [
+          "25.00%",
+          "47.00%",
+          "25.00%",
+          "3.00%",
+        ],
+        "slotsPerTier": [
+          "3",
+          "12",
+          "18",
+          "27",
+        ],
+        "tierThresholds": [
+          "499,800,003,243,396,919,291,550,233",
+          "124,600,000,808,577,943,464,840,255",
+          "33,320,000,216,226,461,286,103,348",
+          "1,680,000,010,902,174,518,291,060",
+        ],
+      }
+    `)
+  }
 })
