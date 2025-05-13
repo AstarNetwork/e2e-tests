@@ -28,9 +28,10 @@ describe('Kusama & Shiden', () => {
         'Expected amount was not received',
       )
 
-      await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
-        '003: shiden event',
-      )
+      await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue')
+        // TODO: remove this when shiden is upgraded with runtime-1500
+        .redact({ redactKeys: /proofSize|refTime/ })
+        .toMatchSnapshot('003: shiden event')
     },
   )
 
