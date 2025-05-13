@@ -107,7 +107,7 @@ exports[`Shiden & AssetHub > 001: AssetHub transfer USDT to Shiden > 002: shiden
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 880000000)",
+        "refTime": "(rounded 900000000)",
       },
     },
     "method": "Processed",
@@ -122,7 +122,7 @@ exports[`Shiden & AssetHub > 002: Shiden transfer USDT to AssetHub > 001: shiden
     "data": [
       "ConcatenatedVersionedXcm",
       {
-        "v2": [
+        "v3": [
           {
             "withdrawAsset": [
               {
@@ -181,7 +181,7 @@ exports[`Shiden & AssetHub > 002: Shiden transfer USDT to AssetHub > 001: shiden
             "depositAsset": {
               "assets": {
                 "wild": {
-                  "all": null,
+                  "allCounted": 1,
                 },
               },
               "beneficiary": {
@@ -189,15 +189,12 @@ exports[`Shiden & AssetHub > 002: Shiden transfer USDT to AssetHub > 001: shiden
                   "x1": {
                     "accountId32": {
                       "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
-                      "network": {
-                        "any": null,
-                      },
+                      "network": null,
                     },
                   },
                 },
                 "parents": 0,
               },
-              "maxAssets": 1,
             },
           },
         ],

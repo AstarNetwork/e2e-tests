@@ -157,8 +157,8 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 002: astar eve
       "origin": "Parent",
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 890000000)",
+        "proofSize": "(rounded 9400)",
+        "refTime": "(rounded 900000000)",
       },
     },
     "method": "Processed",

@@ -106,8 +106,8 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 002: astar ev
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 890000000)",
+        "proofSize": "(rounded 9400)",
+        "refTime": "(rounded 900000000)",
       },
     },
     "method": "Processed",
@@ -122,7 +122,7 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar um
     "data": [
       "ConcatenatedVersionedXcm",
       {
-        "v2": [
+        "v3": [
           {
             "withdrawAsset": [
               {
@@ -181,7 +181,7 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar um
             "depositAsset": {
               "assets": {
                 "wild": {
-                  "all": null,
+                  "allCounted": 1,
                 },
               },
               "beneficiary": {
@@ -189,15 +189,12 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar um
                   "x1": {
                     "accountId32": {
                       "id": "0xd17c2d7823ebf260fd138f2d7e27d114c0145d968b5ff5006125f2414fadae69",
-                      "network": {
-                        "any": null,
-                      },
+                      "network": null,
                     },
                   },
                 },
                 "parents": 0,
               },
-              "maxAssets": 1,
             },
           },
         ],
