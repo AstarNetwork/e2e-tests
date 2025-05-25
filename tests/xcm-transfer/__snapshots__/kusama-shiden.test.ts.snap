@@ -144,8 +144,8 @@ exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 003: shiden even
     "data": {
       "dmqHead": "(hash)",
       "weightUsed": {
-        "proofSize": "(redacted)",
-        "refTime": "(redacted)",
+        "proofSize": "(rounded 8000)",
+        "refTime": "(rounded 530000000)",
       },
     },
     "method": "DownwardMessagesProcessed",
@@ -157,8 +157,8 @@ exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 003: shiden even
       "origin": "Parent",
       "success": true,
       "weightUsed": {
-        "proofSize": "(redacted)",
-        "refTime": "(redacted)",
+        "proofSize": "(rounded 9300)",
+        "refTime": "(rounded 900000000)",
       },
     },
     "method": "Processed",

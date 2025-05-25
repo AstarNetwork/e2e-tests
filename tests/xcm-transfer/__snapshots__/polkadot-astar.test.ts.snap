@@ -144,8 +144,8 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 002: astar eve
     "data": {
       "dmqHead": "(hash)",
       "weightUsed": {
-        "proofSize": "(redacted)",
-        "refTime": "(redacted)",
+        "proofSize": "(rounded 8000)",
+        "refTime": "(rounded 530000000)",
       },
     },
     "method": "DownwardMessagesProcessed",
@@ -157,8 +157,8 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 002: astar eve
       "origin": "Parent",
       "success": true,
       "weightUsed": {
-        "proofSize": "(redacted)",
-        "refTime": "(redacted)",
+        "proofSize": "(rounded 9400)",
+        "refTime": "(rounded 900000000)",
       },
     },
     "method": "Processed",
