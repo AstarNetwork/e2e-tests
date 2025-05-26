@@ -36,10 +36,7 @@ describe('Shiden & AssetHub', () => {
         'Expected amount was not received',
       )
 
-      await checkSystemEvents(shiden, 'xcmpQueue', 'messageQueue')
-        // TODO: remove this when shiden is upgraded with runtime-1500
-        .redact({ redactKeys: /proofSize|refTime/ })
-        .toMatchSnapshot('002: shiden event')
+      await checkSystemEvents(shiden, 'xcmpQueue', 'messageQueue').toMatchSnapshot('002: shiden event')
     },
   )
 
