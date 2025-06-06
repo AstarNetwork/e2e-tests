@@ -10,7 +10,6 @@
 		"fix": "eslint --fix && prettier -w .",
 		"prepare": "husky install",
 		"test": "LOG_LEVEL=error vitest",
-		"test:ui": "LOG_LEVEL=error vitest --ui",
 		"update-env": "tsx scripts/update-env.ts"
 	},
 	"dependencies": {
@@ -30,7 +29,6 @@
 		"@eslint/js": "^9.28",
 		"@types/lodash": "^4.17",
 		"@types/node": "^22.15",
-		"@vitest/ui": "^3.2",
 		"eslint": "^9.28",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.1",
