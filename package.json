@@ -28,7 +28,6 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.28",
-		"@types/eslint__js": "^8",
 		"@types/lodash": "^4.17",
 		"@types/node": "^22.15",
 		"@vitest/ui": "^3.2",
