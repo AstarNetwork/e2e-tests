@@ -8,7 +8,7 @@ exports[`Polkadot & Astar > 001: Polkadot transfer DOT to Astar > 001: polkadot 
         "Complete": {
           "used": {
             "proofSize": "(rounded 6200)",
-            "refTime": "(rounded 260000000)",
+            "refTime": "(rounded 270000000)",
           },
         },
       },

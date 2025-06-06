@@ -6,7 +6,7 @@ exports[`Astar & AssetHub > 001: AssetHub transfer USDT to Astar > 001: statemin
     "data": [
       "ConcatenatedVersionedXcm",
       {
-        "v4": [
+        "v5": [
           {
             "reserveAssetDeposited": [
               {
