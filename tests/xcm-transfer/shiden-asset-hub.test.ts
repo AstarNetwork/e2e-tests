@@ -73,7 +73,7 @@ describe('Shiden & AssetHub', () => {
   )
 
   given('shiden', 'statemine')(
-    '003: Transfer KSM from AssetHub to Shiden',
+    '003: Transfer KSM from AssetHub (statemine) to Shiden',
     async ({ networks: { shiden, statemine }, keyring: { alice, bob } }) => {
       await tx.xcmPallet
         .limitedReserveTransferAssetsV3(statemineUtil.ksm, 1e12, tx.xcmPallet.parachainV3(
