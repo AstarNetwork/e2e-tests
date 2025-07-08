@@ -77,14 +77,14 @@ describe('Shiden & AssetHub', () => {
     async ({ networks: { shiden, statemine }, keyring: { alice, bob } }) => {
       await tx.xcmPallet
         .limitedReserveTransferAssetsV3(statemineUtil.ksm, 1e12, tx.xcmPallet.parachainV3(
-          1,
-          shidenUtil.paraId,
-        ))(statemine, bob.addressRaw)
+            1,
+            shidenUtil.paraId,
+          ))(statemine, bob.addressRaw)
         .signAndSend(alice)
 
       await statemine.chain.newBlock()
 
-       await checkHrmp(statemine)
+      await checkHrmp(statemine)
         .redact({ redactKeys: /setTopic/ })
         .toMatchSnapshot('003: statemine ump messages')
 
