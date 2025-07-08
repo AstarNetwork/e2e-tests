@@ -228,7 +228,7 @@ exports[`Shiden & AssetHub > 002: Shiden transfer USDT to AssetHub > 002: statem
 ]
 `;
 
-exports[`Shiden & AssetHub > 003: Transfer KSM from AssetHub to Shiden > 003: shiden event 1`] = `
+exports[`Shiden & AssetHub > 003: Transfer KSM from AssetHub (statemine) to Shiden > 003: shiden event 1`] = `
 [
   {
     "data": {
@@ -248,7 +248,7 @@ exports[`Shiden & AssetHub > 003: Transfer KSM from AssetHub to Shiden > 003: sh
 ]
 `;
 
-exports[`Shiden & AssetHub > 003: Transfer KSM from AssetHub to Shiden > 003: statemine ump messages 1`] = `
+exports[`Shiden & AssetHub > 003: Transfer KSM from AssetHub (statemine) to Shiden > 003: statemine ump messages 1`] = `
 [
   {
     "data": [
