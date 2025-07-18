@@ -71,4 +71,33 @@ describe('Astar & AssetHub', () => {
       await checkSystemEvents(statemint, 'xcmpQueue', 'messageQueue').toMatchSnapshot('002: statemint event')
     },
   )
+
+  given('astar', 'statemint')(
+    '003: Transfer DOT from AssetHub (statemint) to Astar',
+    async ({ networks: { astar, statemint }, keyring: { alice, bob } }) => {
+      await tx.xcmPallet
+        .limitedReserveTransferAssetsV3(statemintUtil.dot, 1e12, tx.xcmPallet.parachainV3(
+            1,
+            astarUtil.paraId,
+          ))(statemint, bob.addressRaw)
+        .signAndSend(alice)
+
+      await statemint.chain.newBlock()
+
+      await checkHrmp(statemint)
+        .redact({ redactKeys: /setTopic/ })
+        .toMatchSnapshot('003: statemint ump messages')
+
+      await astar.chain.newBlock()
+
+      const bobBalance = await query.assets(astarUtil.dot)(astar, bob.address)
+      expect(bobBalance.unwrap().balance.toNumber()).closeTo(
+        1_000_000_000_000,
+        1_000_000, // some fee
+        'Expected amount was not received',
+      )
+
+      await checkSystemEvents(astar, 'xcmpQueue', 'messageQueue').toMatchSnapshot('003: astar event')
+    },
+  )
 })
