@@ -8,7 +8,7 @@ exports[`Kusama & Shiden > 001: Kusama transfer KSM to Shiden > 001: kusama even
         "Complete": {
           "used": {
             "proofSize": "(rounded 6200)",
-            "refTime": "(rounded 300000000)",
+            "refTime": "(rounded 330000000)",
           },
         },
       },
@@ -192,7 +192,7 @@ exports[`Kusama & Shiden > 002: Shiden transfer DOT to Kusama > 002: kusama even
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 7200)",
-        "refTime": "(rounded 320000000)",
+        "refTime": "(rounded 330000000)",
       },
     },
     "method": "Processed",

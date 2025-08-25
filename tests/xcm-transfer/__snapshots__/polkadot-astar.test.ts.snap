@@ -192,7 +192,7 @@ exports[`Polkadot & Astar > 002: Astar transfer DOT to Polkadot > 002: polkadot 
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 7200)",
-        "refTime": "(rounded 280000000)",
+        "refTime": "(rounded 290000000)",
       },
     },
     "method": "Processed",
