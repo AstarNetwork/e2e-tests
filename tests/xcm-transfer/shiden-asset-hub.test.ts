@@ -3,6 +3,7 @@ import { describe, expect } from 'vitest'
 import { query, tx } from '../../helpers/api'
 import { shiden as shidenUtil } from '../../networks/astar'
 import { statemine as statemineUtil } from '../../networks/statemint'
+import { AssetHubMigrationStep, KusamaMigationStep } from './asset_hub_migration_config.ts'
 
 describe('Shiden & AssetHub', () => {
   given('shiden', 'statemine')(
@@ -98,6 +99,55 @@ describe('Shiden & AssetHub', () => {
       )
 
       await checkSystemEvents(shiden, 'xcmpQueue', 'messageQueue').toMatchSnapshot('003: shiden event')
+    },
+  )
+  given('shiden', 'statemine')(
+    '004: Shiden transfer KSM to AssetHub (statemine)',
+    async ({ networks: { shiden, statemine }, keyring: { alice, bob } }) => {
+      // Ensure Alice has sufficient DOT on Shiden for the transfer
+      await shiden.dev.setStorage({
+        Assets: {
+          account: [[[shidenUtil.ksm, alice.address], { balance: 2e12 }]],
+        },
+      })
+
+      // Transfer KSM from Shiden to AssetHub (statemine)
+      await tx.xtokens
+        .transfer(shidenUtil.ksm, 1e12, tx.xtokens.parachainV3(statemineUtil.paraId))(shiden, bob.addressRaw)
+        .signAndSend(alice)
+
+      await shiden.chain.newBlock()
+
+      if (KusamaMigationStep === AssetHubMigrationStep.NotStrated) {
+        await checkHrmp(shiden)
+          .redact({ redactKeys: /setTopic/ })
+          .toMatchSnapshot('004: shiden ump messages')
+
+        await statemine.chain.newBlock()
+
+        // Verify Bob received KSM on AssetHub (statemine)
+        const bobBalance = await query.balances(statemine, bob.address)
+
+        expect(bobBalance.data.free.toNumber()).closeTo(
+          1_000_000_000_000,
+          1_000_000, // some fee
+          'Expected amount was not received',
+        )
+      }
+      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+        // Do not check snapshot
+
+        await statemine.chain.newBlock()
+
+        // Verify Bob received KSM on AssetHub (statemine)
+        const bobBalance = await query.balances(statemine, bob.address)
+
+        expect(bobBalance.data.free.toNumber()).closeTo(
+          0,
+          0, // some fee
+          'Expected amount was not received',
+        )
+      }
     },
   )
 })

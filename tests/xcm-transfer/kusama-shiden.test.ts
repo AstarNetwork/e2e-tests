@@ -3,6 +3,7 @@ import { describe, expect } from 'vitest'
 import { kusama as kusamaUtil } from '../../networks/polkadot'
 import { query, tx } from '../../helpers/api'
 import { shiden as shidenUtil } from '../../networks/astar'
+import { KusamaMigationStep, AssetHubMigrationStep } from './asset_hub_migration_config.ts'
 
 describe('Kusama & Shiden', () => {
   given('kusama', 'shiden')(
@@ -43,20 +44,34 @@ describe('Kusama & Shiden', () => {
 
       await shiden.chain.newBlock()
 
-      await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
-        '001: shiden event',
-      )
+      if (KusamaMigationStep === AssetHubMigrationStep.NotStrated) {
+        await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
+          '001: shiden event',
+        )
 
-      await kusama.chain.newBlock()
+        await kusama.chain.newBlock()
 
-      const bobBalance = await kusama.api.query.system.account(bob.address)
-      expect(bobBalance.data.free.toNumber()).closeTo(
-        1e12,
-        1e8, // some fee
-        'Expected amount was not received',
-      )
+        const bobBalance = await kusama.api.query.system.account(bob.address)
+        expect(bobBalance.data.free.toNumber()).closeTo(
+          0,
+          1e8, // some fee
+          'Expected amount was not received',
+        )
 
-      await checkSystemEvents(kusama, 'messageQueue').toMatchSnapshot('002: kusama event')
+        await checkSystemEvents(kusama, 'messageQueue').toMatchSnapshot('002: kusama event')
+      }
+      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+        //Do not check snapshot
+
+        // Tokens should not have been received
+        const bobBalance = await kusama.api.query.system.account(bob.address)
+        expect(bobBalance.data.free.toNumber()).closeTo(
+          0,
+          0, // some fee
+          'Should be 0',
+        )
+
+      }
     },
   )
 })
