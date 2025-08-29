@@ -18,20 +18,29 @@ describe('Kusama & Shiden', () => {
 
       await kusama.chain.newBlock()
 
-      await checkSystemEvents(kusama, 'xcmPallet').toMatchSnapshot('001: kusama event')
+      if (KusamaMigationStep === AssetHubMigrationStep.NotStrated) {
+        await checkSystemEvents(kusama, 'xcmPallet').toMatchSnapshot('001: kusama event')
 
-      await shiden.chain.newBlock()
+        await shiden.chain.newBlock()
 
-      const bobBalance = await query.assets(shidenUtil.ksm)(shiden, bob.address)
-      expect(bobBalance.unwrap().balance.toNumber()).closeTo(
-        1e12,
-        1e6, // some fee
-        'Expected amount was not received',
-      )
+        const bobBalance = await query.assets(shidenUtil.ksm)(shiden, bob.address)
+        expect(bobBalance.unwrap().balance.toNumber()).closeTo(
+          1e12,
+          1e6, // some fee
+          'Expected amount was not received',
+        )
 
-      await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
-        '003: shiden event',
-      )
+        await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
+          '003: shiden event',
+        )
+      }
+      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+        // Do not check snapshot
+
+        // Tokens should not have been received, and balance is none
+        const bobBalance = await query.assets(shidenUtil.ksm)(shiden, bob.address)
+        expect(bobBalance.isNone, 'Expected no balance').toBe(true)
+      }
     },
   )
 
@@ -61,7 +70,7 @@ describe('Kusama & Shiden', () => {
         await checkSystemEvents(kusama, 'messageQueue').toMatchSnapshot('002: kusama event')
       }
       else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
-        //Do not check snapshot
+        // Do not check snapshot
 
         // Tokens should not have been received
         const bobBalance = await kusama.api.query.system.account(bob.address)
@@ -70,7 +79,6 @@ describe('Kusama & Shiden', () => {
           0, // some fee
           'Should be 0',
         )
-
       }
     },
   )
