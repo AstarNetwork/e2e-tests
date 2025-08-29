@@ -33,8 +33,7 @@ describe('Kusama & Shiden', () => {
         await checkSystemEvents(shiden, 'parachainSystem', 'dmpQueue', 'messageQueue').toMatchSnapshot(
           '003: shiden event',
         )
-      }
-      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+      } else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
         // Do not check snapshot
 
         // Tokens should not have been received, and balance is none
@@ -68,8 +67,7 @@ describe('Kusama & Shiden', () => {
         )
 
         await checkSystemEvents(kusama, 'messageQueue').toMatchSnapshot('002: kusama event')
-      }
-      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+      } else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
         // Do not check snapshot
 
         // Tokens should not have been received

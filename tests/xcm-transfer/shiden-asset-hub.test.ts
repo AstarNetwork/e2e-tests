@@ -133,8 +133,7 @@ describe('Shiden & AssetHub', () => {
           1_000_000, // some fee
           'Expected amount was not received',
         )
-      }
-      else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
+      } else if (KusamaMigationStep === AssetHubMigrationStep.Ongoing) {
         // Do not check snapshot
 
         await statemine.chain.newBlock()
