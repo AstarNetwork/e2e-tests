@@ -13,28 +13,28 @@
 		"update-env": "tsx scripts/update-env.ts"
 	},
 	"dependencies": {
-		"@acala-network/chopsticks": "^1.0",
-		"@acala-network/chopsticks-testing": "^1.0",
-		"@polkadot/api": "^15.10",
-		"@swc/core": "^1.11",
-		"axios": "^1.9.0",
-		"dotenv": "^16.5.0",
+		"@acala-network/chopsticks": "^1.2.1",
+		"@acala-network/chopsticks-testing": "^1.2.1",
+		"@polkadot/api": "^16.4.5",
+		"@swc/core": "^1.13.5",
+		"axios": "^1.11.0",
+		"dotenv": "^17.2.1",
 		"lodash": "^4.17.21",
 		"reflect-metadata": "^0.2.2",
-		"typescript": "5.8.3",
-		"unplugin-swc": "^1.5",
-		"vitest": "^3.2"
+		"typescript": "5.9.2",
+		"unplugin-swc": "^1.5.7",
+		"vitest": "^3.2.4"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.28",
-		"@types/lodash": "^4.17",
-		"@types/node": "^22.15",
-		"eslint": "^9.28",
+		"@eslint/js": "^9.34.0",
+		"@types/lodash": "^4.17.20",
+		"@types/node": "^24.3.0",
+		"eslint": "^9.34.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^16.1",
-		"prettier": "^3.5",
-		"tsx": "^4.19",
-		"typescript-eslint": "8.33"
+		"lint-staged": "^16.1.5",
+		"prettier": "^3.6.2",
+		"tsx": "^4.20.5",
+		"typescript-eslint": "8.40.0"
 	},
 	"prettier": {
 		"tabWidth": 2,
