@@ -14,8 +14,8 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
   // Scenario 1: baseline, no decay
   // new parameter on version 2
   if (palletVersion >= 2) {
-    config.decayRate = 1_000_000_000_000_000_000n; // 100%
-    config.decayFactor = 1_000_000_000_000_000_000n; // 100%
+    config.decayRate = 1_000_000_000_000_000_000n // 100%
+    config.decayFactor = 1_000_000_000_000_000_000n // 100%
   }
 
   await astar.dev.setStorage({
@@ -24,8 +24,8 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
     },
     inflation: {
       activeInflationConfig: config,
-    }
-  });
+    },
+  })
 
   await advanceNextEra()
 
