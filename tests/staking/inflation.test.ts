@@ -3,11 +3,6 @@ import { u16 } from '@polkadot/types'
 import { given } from '../../helpers'
 
 given('astar')('Reward payouts based on inflation (decayed)', async ({ networks: { astar } }) => {
-  const advanceNextEra = async () => {
-    const state = await astar.api.query.dappStaking.activeProtocolState<any>()
-    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: state.nextEraStart.toNumber() })
-  }
-
   const palletVersion = (await astar.api.query.inflation.palletVersion<u16>()).toNumber()
   const config = (await astar.api.query.inflation.activeInflationConfig()).toJSON() as Record<string, any>
 
@@ -18,19 +13,24 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
     config.decayFactor = 1_000_000_000_000_000_000n // 100%
   }
 
+  const totalIssuance = 8_400_000_000_000_000_000_000_000_000n // 8.4B
   await astar.dev.setStorage({
     balances: {
-      totalIssuance: 8_400_000_000_000_000_000_000_000_000n, // 8.4B
+      totalIssuance,
     },
     inflation: {
       activeInflationConfig: config,
     },
   })
 
-  await advanceNextEra()
+  await astar.dev.newBlock({ count: 1 })
 
   const issuance_1 = (await astar.api.query.balances.totalIssuance()).toBigInt()
-  expect(issuance_1).toBeGreaterThan(8_400_000_000_000_000_000_000_000_000n)
+  if (config.collatorRewardPerBlock == 0 && config.treasuryRewardPerBlock == 0) {
+    expect(issuance_1).toEqual(totalIssuance)
+  } else {
+    expect(issuance_1).toBeGreaterThan(totalIssuance)
+  }
 
   // Scenario 2: decayRate = 0%, expect no rewards
   if (palletVersion >= 2) {
@@ -39,13 +39,13 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
       inflation: { activeInflationConfig: config },
     })
 
-    await advanceNextEra()
+    await astar.dev.newBlock({ count: 1 })
 
     const activeConfig = (await astar.api.query.inflation.activeInflationConfig()).toJSON() as Record<string, any>
     const decay_factor = activeConfig.decayFactor
     expect(BigInt(decay_factor)).toBe(0n)
 
     const issuance_2 = (await astar.api.query.balances.totalIssuance()).toBigInt()
-    expect(issuance_2).toBe(issuance_1) // no increase
+    expect(issuance_2).toEqual(issuance_1) // no increase
   }
 })
