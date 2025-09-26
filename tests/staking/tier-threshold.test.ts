@@ -21,6 +21,17 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
 
   const palletVersion = (await astar.api.query.dappStaking.palletVersion<u16>()).toNumber()
 
+  const inflationConfig = (await astar.api.query.inflation.activeInflationConfig()).toJSON() as Record<string, any>
+  const noRewardsConfig = {
+    ...inflationConfig,
+    collatorRewardPerBlock: 0n,
+    treasuryRewardPerBlock: 0n,
+    dappRewardPoolPerEra: 0n,
+    baseStakerRewardPoolPerEra: 0n,
+    adjustableStakerRewardPoolPerEra: 0n,
+    bonusRewardPoolPerPeriod: 0n,
+  }
+
   // set total issuance to 8.4B (dApp staking v3 launch)
   // set price to $0.10
   await astar.dev.setStorage({
@@ -91,6 +102,9 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
         slotNumberArgs: [1000, 50],
       },
     },
+    inflation: {
+      activeInflationConfig: noRewardsConfig,
+    },
     priceAggregator: {
       valuesCircularBuffer: {
         head: 1,
@@ -122,16 +136,19 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
         "67",
       ],
       "tierThresholds": [
-        "199,920,000,216,226,461,379,399,349",
-        "50,400,000,054,510,872,591,455,298",
-        "15,036,000,016,262,410,323,117,497",
-        "1,680,000,001,817,029,086,381,843",
+        "199,920,000,000,000,000,099,960,000",
+        "50,400,000,000,000,000,000,000,000",
+        "15,036,000,000,000,000,000,000,000",
+        "1,680,000,000,000,000,000,000,000",
       ],
     }
   `)
 
   // set price to $0.50
   await astar.dev.setStorage({
+    inflation: {
+      activeInflationConfig: noRewardsConfig,
+    },
     priceAggregator: {
       valuesCircularBuffer: {
         head: 1,
@@ -163,16 +180,19 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
         "247",
       ],
       "tierThresholds": [
-        "199,920,000,432,452,922,558,878,698",
-        "50,400,000,109,021,745,182,910,596",
-        "15,036,000,032,524,820,646,234,994",
-        "1,680,000,003,634,058,172,763,687",
+        "199,920,000,000,000,000,000,000,000",
+        "50,400,000,000,000,000,000,000,000",
+        "15,036,000,000,000,000,000,000,000",
+        "1,680,000,000,000,000,000,000,000",
       ],
     }
   `)
 
   // set price to $0.01
   await astar.dev.setStorage({
+    inflation: {
+      activeInflationConfig: noRewardsConfig,
+    },
     priceAggregator: {
       valuesCircularBuffer: {
         head: 1,
@@ -205,33 +225,10 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
           "27",
         ],
         "tierThresholds": [
-          "299,880,000,973,019,075,757,477,070",
-          "74,760,000,242,573,383,031,976,076",
-          "19,992,000,064,867,938,383,831,805",
-          "1,680,000,005,451,087,259,145,530",
-        ],
-      }
-    `)
-  } else {
-    expect(config.toHuman()).toMatchInlineSnapshot(`
-      {
-        "rewardPortion": [
-          "25.00%",
-          "47.00%",
-          "25.00%",
-          "3.00%",
-        ],
-        "slotsPerTier": [
-          "3",
-          "12",
-          "18",
-          "27",
-        ],
-        "tierThresholds": [
-          "499,800,003,243,396,919,291,550,233",
-          "124,600,000,808,577,943,464,840,255",
-          "33,320,000,216,226,461,286,103,348",
-          "1,680,000,010,902,174,518,291,060",
+          "299,880,000,000,000,000,000,000,000",
+          "74,760,000,000,000,000,000,000,000",
+          "19,992,000,000,000,000,000,000,000",
+          "1,680,000,000,000,000,000,000,000",
         ],
       }
     `)
