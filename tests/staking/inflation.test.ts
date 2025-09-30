@@ -1,6 +1,19 @@
 import { expect } from 'vitest'
-import { u16 } from '@polkadot/types'
+import { Struct, u16, u32, bool } from '@polkadot/types'
 import { given } from '../../helpers'
+
+interface PeriodInfo extends Struct {
+  number: u32
+  subperiod: any
+  nextSubperiodStartEra: u32
+}
+
+interface ProtocolState extends Struct {
+  era: u32
+  nextEraStart: u32
+  periodInfo: PeriodInfo
+  maintenance: bool
+}
 
 given('astar')('Reward payouts based on inflation (decayed)', async ({ networks: { astar } }) => {
   const baseRewards = 1_000_000_000_000_000_000n // 1 ASTR
@@ -8,8 +21,32 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
   const palletVersion = (await astar.api.query.inflation.palletVersion<u16>()).toNumber()
 
   const advanceNextVotingSubPeriod = async () => {
-    const finalEra = (await astar.api.query.dappStaking.periodEnd<any>()).finalEra
-    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: finalEra + 1 })
+    const state = await astar.api.query.dappStaking.activeProtocolState<ProtocolState>()
+    const currentBlock = (await astar.api.rpc.chain.getHeader()).number.toNumber()
+    const blocksPerEra = await astar.api.call.dappStakingApi.blocksPerEra<number>()
+    const beEras = await astar.api.call.dappStakingApi.erasPerBuildAndEarnSubperiod<number>()
+
+    const currentEra = state.era.toNumber()
+    const nextEraBlock = state.nextEraStart.toNumber()
+    const nextSubperiodEra = state.periodInfo.nextSubperiodStartEra.toNumber()
+    const remainingEraBlocks = nextEraBlock - currentBlock
+    const remainingEras = nextSubperiodEra - currentEra
+
+    let remainingBlocks: number
+    if (state.periodInfo.subperiod.toString() === 'BuildAndEarn') {
+      // Build&Earn -> Voting
+      remainingBlocks = remainingEraBlocks + remainingEras * blocksPerEra
+    } else if (state.periodInfo.subperiod.toString() === 'Voting') {
+      // Voting -> Build&Earn -> next Voting
+      remainingBlocks = remainingEraBlocks + remainingEras * blocksPerEra + beEras * blocksPerEra
+    } else {
+      // Something is wrong
+      console.warn('Something is wrong; unknown subperiod')
+      return
+    }
+
+    const targetBlockHeight = currentBlock + remainingBlocks
+    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: targetBlockHeight })
   }
 
   if (palletVersion >= 2) {
