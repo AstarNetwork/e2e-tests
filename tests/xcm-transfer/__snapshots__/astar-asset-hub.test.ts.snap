@@ -218,8 +218,8 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 002: statemin
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 7200)",
-        "refTime": "(rounded 330000000)",
+        "proofSize": "(rounded 11000)",
+        "refTime": "(rounded 980000000)",
       },
     },
     "method": "Processed",
