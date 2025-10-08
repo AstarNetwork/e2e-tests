@@ -208,41 +208,41 @@ export const xcmPallet = {
       ),
   transferAssetsUsingTypeAndThenV3:
     (token: any, amount: any, dest: any) =>
-      ({ api }: { api: ApiPromise }, acc: any) =>
-        (api.tx.xcmPallet || api.tx.polkadotXcm).transferAssetsUsingTypeAndThen(
-          dest,
-          {
-            V3: [
-              {
-                id: token,
-                fun: { Fungible: amount },
-              },
-            ],
-          },
-          'LocalReserve',
-          { V3: token },
-          'LocalReserve',
-          {
-            V3: [
-              {
-                DepositAsset: {
-                  assets: { Wild: 'All' },
-                  beneficiary: {
-                    parents: 0,
-                    interior: {
-                      X1: {
-                        AccountId32: {
-                          id: acc,
-                        },
+    ({ api }: { api: ApiPromise }, acc: any) =>
+      (api.tx.xcmPallet || api.tx.polkadotXcm).transferAssetsUsingTypeAndThen(
+        dest,
+        {
+          V3: [
+            {
+              id: token,
+              fun: { Fungible: amount },
+            },
+          ],
+        },
+        'LocalReserve',
+        { V3: token },
+        'LocalReserve',
+        {
+          V3: [
+            {
+              DepositAsset: {
+                assets: { Wild: 'All' },
+                beneficiary: {
+                  parents: 0,
+                  interior: {
+                    X1: {
+                      AccountId32: {
+                        id: acc,
                       },
                     },
                   },
                 },
               },
-            ],
-          },
-          'Unlimited',
-        ),
+            },
+          ],
+        },
+        'Unlimited',
+      ),
 }
 
 export const tx = {
