@@ -6,7 +6,7 @@ export default {
     endpoint: 'wss://polkadot-asset-hub-rpc.polkadot.io',
   },
   kusama: {
-    name: 'statemine' as const,
+    name: 'assethub' as const,
     endpoint: 'wss://kusama-asset-hub-rpc.polkadot.io',
   },
   config: ({ alice }) => ({
@@ -16,7 +16,7 @@ export default {
       },
       Assets: {
         account: [
-          [[statemine.usdtIndex, alice.address], { balance: 1000e6 }], // USDT
+          [[assethub.usdtIndex, alice.address], { balance: 1000e6 }], // USDT
         ],
       },
     },
@@ -32,7 +32,7 @@ export const statemint = {
   usdtIndex: 1984,
 } as const
 
-export const statemine = {
+export const assethub = {
   paraId: 1000,
   ksm: { Concrete: { parents: 1, interior: 'Here' } },
   usdt: { Concrete: { parents: 0, interior: { X2: [{ PalletInstance: 50 }, { GeneralIndex: 1984 }] } } },
