@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shiden > 001: shiden event 1`] = `
+exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub to Shiden > 001: shiden event 1`] = `
 [
   {
     "data": {
@@ -10,8 +10,8 @@ exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shid
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 9300)",
-        "refTime": "(rounded 900000000)",
+        "proofSize": "(rounded 340000)",
+        "refTime": "(rounded 29000000000)",
       },
     },
     "method": "Processed",
@@ -20,7 +20,7 @@ exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shid
 ]
 `;
 
-exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shiden > 001: statemine ump messages 1`] = `
+exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub to Shiden > 001: statemine ump messages 1`] = `
 [
   {
     "data": [
@@ -67,7 +67,7 @@ exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shid
             "depositAsset": {
               "assets": {
                 "wild": {
-                  "allCounted": 1,
+                  "all": null,
                 },
               },
               "beneficiary": {
@@ -95,3 +95,25 @@ exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub (statemine) to Shid
   },
 ]
 `;
+
+exports[`Shiden & AssetHub > 002: Transfer KSM from Shiden to Asset Hub > 002: asset hub event 1`] = `
+[
+  {
+    "data": {
+      "id": "(hash)",
+      "origin": {
+        "Sibling": "(rounded 2000)",
+      },
+      "success": true,
+      "weightUsed": {
+        "proofSize": "(rounded 11000)",
+        "refTime": "(rounded 1000000000)",
+      },
+    },
+    "method": "Processed",
+    "section": "messageQueue",
+  },
+]
+`;
+
+exports[`Shiden & AssetHub > 002: Transfer KSM from Shiden to Asset Hub > 002: shiden event 1`] = `[]`;
