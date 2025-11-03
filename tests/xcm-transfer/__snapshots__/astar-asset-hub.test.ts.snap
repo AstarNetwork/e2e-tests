@@ -219,7 +219,7 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 002: statemin
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 11000)",
-        "refTime": "(rounded 980000000)",
+        "refTime": "(rounded 1000000000)",
       },
     },
     "method": "Processed",
@@ -238,8 +238,8 @@ exports[`Astar & AssetHub > 003: Transfer DOT from AssetHub (statemint) to Astar
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 9400)",
-        "refTime": "(rounded 900000000)",
+        "proofSize": "(rounded 340000)",
+        "refTime": "(rounded 29000000000)",
       },
     },
     "method": "Processed",
@@ -295,7 +295,7 @@ exports[`Astar & AssetHub > 003: Transfer DOT from AssetHub (statemint) to Astar
             "depositAsset": {
               "assets": {
                 "wild": {
-                  "allCounted": 1,
+                  "all": null,
                 },
               },
               "beneficiary": {
