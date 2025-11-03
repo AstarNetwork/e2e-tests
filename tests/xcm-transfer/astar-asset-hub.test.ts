@@ -76,7 +76,7 @@ describe('Astar & AssetHub', () => {
     '003: Transfer DOT from AssetHub (statemint) to Astar',
     async ({ networks: { astar, statemint }, keyring: { alice, bob } }) => {
       await tx.xcmPallet
-        .limitedReserveTransferAssetsV3(statemintUtil.dot, 1e12, tx.xcmPallet.parachainV3(
+        .transferAssetsUsingTypeAndThenV3(statemintUtil.dot, 1e12, tx.xcmPallet.parachainV3(
             1,
             astarUtil.paraId,
           ))(statemint, bob.addressRaw)
@@ -93,7 +93,7 @@ describe('Astar & AssetHub', () => {
       const bobBalance = await query.assets(astarUtil.dot)(astar, bob.address)
       expect(bobBalance.unwrap().balance.toNumber()).closeTo(
         1_000_000_000_000,
-        1_000_000, // some fee
+        1e8, // some fee
         'Expected amount was not received',
       )
 
