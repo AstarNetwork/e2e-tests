@@ -1,6 +1,5 @@
 import { AccountInfo } from '@polkadot/types/interfaces'
 import { ApiPromise } from '@polkadot/api'
-import { SubmittableExtrinsic } from '@polkadot/api-base/types'
 
 export const balance = async (api: ApiPromise, address: string) => {
   const account = await api.query.system.account<AccountInfo>(address)
@@ -357,8 +356,4 @@ export const xTokensTransferMulticurrenciesV3 = (
     } as any,
     'Unlimited',
   )
-}
-
-export const sudo = (api: ApiPromise, call: SubmittableExtrinsic<'promise'>) => {
-  return api.tx.sudo.sudo(call)
 }

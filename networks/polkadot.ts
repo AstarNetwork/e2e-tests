@@ -3,11 +3,11 @@ import { Config } from './types'
 export default {
   polkadot: {
     name: 'polkadot' as const,
-    endpoint: ['wss://rpc.polkadot.io', 'wss://polkadot-rpc.dwellir.com'],
+    endpoint: ['wss://rpc.ibp.network/polkadot', 'wss://polkadot-rpc.n.dwellir.com'],
   },
   kusama: {
     name: 'kusama' as const,
-    endpoint: ['wss://kusama-rpc.polkadot.io', 'wss://kusama-rpc.dwellir.com'],
+    endpoint: ['wss://rpc.ibp.network/kusama', 'wss://kusama-rpc.n.dwellir.com'],
   },
   config: ({ alice }) => ({
     storages: {
