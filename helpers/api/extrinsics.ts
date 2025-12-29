@@ -358,7 +358,3 @@ export const xTokensTransferMulticurrenciesV3 = (
     'Unlimited',
   )
 }
-
-export const sudo = (api: ApiPromise, call: SubmittableExtrinsic<'promise'>) => {
-  return api.tx.sudo.sudo(call)
-}

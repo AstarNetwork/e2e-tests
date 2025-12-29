@@ -3,11 +3,11 @@ import { Config } from './types'
 export default {
   polkadot: {
     name: 'statemint' as const,
-    endpoint: 'wss://polkadot-asset-hub-rpc.polkadot.io',
+    endpoint: 'wss://asset-hub-polkadot-rpc.n.dwellir.com',
   },
   kusama: {
     name: 'assethub' as const,
-    endpoint: 'wss://kusama-asset-hub-rpc.polkadot.io',
+    endpoint: 'wss://asset-hub-kusama-rpc.n.dwellir.com',
   },
   config: ({ alice }) => ({
     storages: {

@@ -16,7 +16,16 @@ const calculateNumberOfSlots = (slotsPerTier: u16[]): number => {
 given('astar')('Number of slots adjusted based on price', async ({ networks: { astar } }) => {
   const advanceNextEra = async () => {
     const state = await astar.api.query.dappStaking.activeProtocolState<any>()
-    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: state.nextEraStart.toNumber() })
+    const targetBlock = state.nextEraStart.toNumber()
+
+    // Set the current block number in storage to be exactly 1 less than target
+    // This satisfies the runtime's assertion: current_block + 1 == new_block
+    await astar.dev.setStorage({
+      system: {
+        number: targetBlock - 1,
+      },
+    })
+    await astar.dev.newBlock({ count: 1, unsafeBlockHeight: targetBlock })
   }
 
   const palletVersion = (await astar.api.query.dappStaking.palletVersion<u16>()).toNumber()

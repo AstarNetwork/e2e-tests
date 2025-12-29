@@ -7,12 +7,12 @@ export type Vars = {
 export default {
   polkadot: {
     name: 'astar' as const,
-    endpoint: ['wss://rpc.astar.network', 'wss://astar-rpc.dwellir.com'],
+    endpoint: ['wss://rpc.astar.network', 'wss://astar-rpc.n.dwellir.com'],
     relayToken: '340282366920938463463374607431768211455',
   },
   kusama: {
     name: 'shiden' as const,
-    endpoint: ['wss://rpc.shiden.astar.network', 'wss://shiden-rpc.dwellir.com'],
+    endpoint: ['wss://rpc.shiden.astar.network', 'wss://shiden-rpc.n.dwellir.com'],
     relayToken: '340282366920938463463374607431768211455',
   },
   config: ({ alice, relayToken }) => ({
@@ -25,9 +25,6 @@ export default {
       },
       Assets: {
         account: [[[relayToken, alice.address], { balance: 10n * 10n ** 12n }]],
-      },
-      Sudo: {
-        key: alice.address,
       },
       PolkadotXcm: {
         // avoid sending xcm version change notifications to makes things faster

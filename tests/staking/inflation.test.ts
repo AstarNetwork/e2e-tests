@@ -46,6 +46,14 @@ given('astar')('Reward payouts based on inflation (decayed)', async ({ networks:
     }
 
     const targetBlockHeight = currentBlock + remainingBlocks
+
+    // Set the current block number in storage to be exactly 1 less than target
+    // This satisfies the runtime's assertion: current_block + 1 == new_block
+    await astar.dev.setStorage({
+      system: {
+        number: targetBlockHeight - 1,
+      },
+    })
     await astar.dev.newBlock({ count: 1, unsafeBlockHeight: targetBlockHeight })
   }
 
