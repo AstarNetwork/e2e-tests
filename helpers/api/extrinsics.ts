@@ -1,6 +1,5 @@
 import { AccountInfo } from '@polkadot/types/interfaces'
 import { ApiPromise } from '@polkadot/api'
-import { SubmittableExtrinsic } from '@polkadot/api-base/types'
 
 export const balance = async (api: ApiPromise, address: string) => {
   const account = await api.query.system.account<AccountInfo>(address)
