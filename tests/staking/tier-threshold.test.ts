@@ -3,6 +3,8 @@ import { Perbill } from '@polkadot/types/interfaces'
 import { Struct, Vec, u16, u128 } from '@polkadot/types'
 import { given } from '../../helpers'
 
+const REVAMP_PALLET_VERSION = 11
+
 interface TiersConfigurationV8 extends Struct {
   readonly slotsPerTier: Vec<u16>
   readonly rewardPortion: Vec<Perbill>
@@ -13,7 +15,7 @@ const calculateNumberOfSlots = (slotsPerTier: u16[]): number => {
   return slotsPerTier.reduce((acc, val) => acc + val.toNumber(), 0)
 }
 
-given('astar')('Number of slots adjusted based on price', async ({ networks: { astar } }) => {
+given('astar')('Static number of slots, not adjusted based on price', async ({ networks: { astar } }) => {
   const advanceNextEra = async () => {
     const state = await astar.api.query.dappStaking.activeProtocolState<any>()
     const targetBlock = state.nextEraStart.toNumber()
@@ -56,12 +58,12 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
           250000, // 25%
           30000, // 3%
         ],
-        // Permill percentages
+        // Permill percentages for a fixed 16 slots capacity
         slotDistribution: [
-          50000, // 5%
-          200000, // 20%
-          300000, // 30%
-          450000, // 45%
+          62500,   // 6.25% (1 slot)
+          187500,  // 18.75% (3 slots)
+          312500,  // 31.25% (5 slots)
+          437500,  // 43.75% (7 slots)
         ],
         // Perbill percentages
         // percentages below are calculated based on total issuance at the time when dApp staking v3 was launched (8.4B)
@@ -70,36 +72,21 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
             DynamicPercentage: {
               percentage: 35_700_000, // 3.57%
               minimumRequiredPercentage: 23_800_000, // 2.38%
-              // new parameter on version 10
-              ...(palletVersion >= 10
-                ? {
-                    maximumPossiblePercentage: 35_700_000, // 3.57%
-                  }
-                : {}),
+              maximumPossiblePercentage: 35_700_000, // 3.57%
             },
           },
           {
             DynamicPercentage: {
               percentage: 8_900_000, // 0.89%
               minimumRequiredPercentage: 6_000_000, // 0.6%
-              // new parameter on version 10
-              ...(palletVersion >= 10
-                ? {
-                    maximumPossiblePercentage: 8_900_000, // 0.89%
-                  }
-                : {}),
+              maximumPossiblePercentage: 8_900_000, // 0.89%
             },
           },
           {
             DynamicPercentage: {
               percentage: 2_380_000, // 0.238%
               minimumRequiredPercentage: 1_790_000, // 0.179%
-              // new parameter on version 10
-              ...(palletVersion >= 10
-                ? {
-                    maximumPossiblePercentage: 2_380_000, // 0.238%
-                  }
-                : {}),
+              maximumPossiblePercentage: 2_380_000, // 0.238%
             },
           },
           {
@@ -108,7 +95,17 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
             },
           },
         ],
-        slotNumberArgs: [1000, 50],
+        slotNumberArgs: [0, 16],
+        ...(palletVersion >= REVAMP_PALLET_VERSION
+          ? {
+            tierRanks: [
+              [0, 0],     // Tier 0: dummy
+              [100, 14],
+              [30, 11],
+              [0, 0],     // Tier 3: dummy
+            ] as const,
+          }
+          : {}),
       },
     },
     inflation: {
@@ -129,7 +126,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   let config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
   let numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
-  expect(numberOfSlots).toEqual(149)
+  expect(numberOfSlots).toEqual(16)
   expect(config.toHuman()).toMatchInlineSnapshot(`
     {
       "rewardPortion": [
@@ -139,10 +136,10 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
         "3.00%",
       ],
       "slotsPerTier": [
+        "1",
+        "3",
+        "5",
         "7",
-        "30",
-        "45",
-        "67",
       ],
       "tierThresholds": [
         "199,920,000,000,000,000,099,960,000",
@@ -173,7 +170,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
   numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
-  expect(numberOfSlots).toEqual(549)
+  expect(numberOfSlots).toEqual(16)
   expect(config.toHuman()).toMatchInlineSnapshot(`
     {
       "rewardPortion": [
@@ -183,10 +180,10 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
         "3.00%",
       ],
       "slotsPerTier": [
-        "27",
-        "110",
-        "165",
-        "247",
+        "1",
+        "3",
+        "5",
+        "7",
       ],
       "tierThresholds": [
         "199,920,000,000,000,000,000,000,000",
@@ -217,7 +214,7 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
   config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
   numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
-  expect(numberOfSlots).toEqual(60)
+  expect(numberOfSlots).toEqual(16)
   if (palletVersion >= 10) {
     expect(config.toHuman()).toMatchInlineSnapshot(`
       {
@@ -228,10 +225,10 @@ given('astar')('Number of slots adjusted based on price', async ({ networks: { a
           "3.00%",
         ],
         "slotsPerTier": [
+          "1",
           "3",
-          "12",
-          "18",
-          "27",
+          "5",
+          "7",
         ],
         "tierThresholds": [
           "299,880,000,000,000,000,000,000,000",

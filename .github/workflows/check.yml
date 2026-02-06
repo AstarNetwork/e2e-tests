@@ -7,6 +7,7 @@ on:
 
 env:
   DB_PATH: ./db.sqlite
+  ASTAR_ENDPOINT: https://rpc.astar.network
 
 jobs:
   tests:
@@ -37,4 +38,3 @@ jobs:
         status: ${{ job.status }}
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
