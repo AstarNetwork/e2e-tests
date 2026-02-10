@@ -60,10 +60,10 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
         ],
         // Permill percentages for a fixed 16 slots capacity
         slotDistribution: [
-          62500,   // 6.25% (1 slot)
-          187500,  // 18.75% (3 slots)
-          312500,  // 31.25% (5 slots)
-          437500,  // 43.75% (7 slots)
+          62500, // 6.25% (1 slot)
+          187500, // 18.75% (3 slots)
+          312500, // 31.25% (5 slots)
+          437500, // 43.75% (7 slots)
         ],
         // Perbill percentages
         // percentages below are calculated based on total issuance at the time when dApp staking v3 was launched (8.4B)
@@ -98,13 +98,8 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
         slotNumberArgs: [0, 16],
         ...(palletVersion >= REVAMP_PALLET_VERSION
           ? {
-            tierRanks: [
-              [0, 0],     // Tier 0: dummy
-              [100, 14],
-              [30, 11],
-              [0, 0],     // Tier 3: dummy
-            ] as const,
-          }
+              tierRankMultipliers: [0, 24_000, 46_700, 0],
+            }
           : {}),
       },
     },
@@ -142,9 +137,9 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
         "7",
       ],
       "tierThresholds": [
-        "199,920,000,000,000,000,099,960,000",
-        "50,400,000,000,000,000,000,000,000",
-        "15,036,000,000,000,000,000,000,000",
+        "299,880,000,000,000,000,000,000,000",
+        "74,760,000,000,000,000,000,000,000",
+        "19,992,000,000,000,000,000,000,000",
         "1,680,000,000,000,000,000,000,000",
       ],
     }
@@ -186,9 +181,9 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
         "7",
       ],
       "tierThresholds": [
-        "199,920,000,000,000,000,000,000,000",
-        "50,400,000,000,000,000,000,000,000",
-        "15,036,000,000,000,000,000,000,000",
+        "299,880,000,000,000,000,000,000,000",
+        "74,760,000,000,000,000,000,000,000",
+        "19,992,000,000,000,000,000,000,000",
         "1,680,000,000,000,000,000,000,000",
       ],
     }
