@@ -7,7 +7,7 @@ on:
 
 env:
   DB_PATH: ./db.sqlite
-  ASTAR_ENDPOINT: https://rpc.astar.network
+  ASTAR_ENDPOINT: wss://astar-rpc.n.dwellir.com
 
 jobs:
   tests:
