@@ -3,7 +3,7 @@ import { Perbill } from '@polkadot/types/interfaces'
 import { Struct, Vec, u16, u128 } from '@polkadot/types'
 import { given } from '../../helpers'
 
-const REVAMP_CLEANUP_PALLET_VERSION = 12
+const PRE_CLEANUP_SPEC_VERSION = 2101
 
 interface TiersConfigurationV8 extends Struct {
   readonly slotsPerTier: Vec<u16>
@@ -30,7 +30,7 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
     await astar.dev.newBlock({ count: 1, unsafeBlockHeight: targetBlock })
   }
 
-  const palletVersion = (await astar.api.query.dappStaking.palletVersion<u16>()).toNumber()
+  const specVersion = (await astar.api.query.system.lastRuntimeUpgrade<any>()).toJSON().specVersion.toString()
 
   const inflationConfig = (await astar.api.query.inflation.activeInflationConfig()).toJSON() as Record<string, any>
   const noRewardsConfig = {
@@ -90,39 +90,9 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
           },
         ],
         tierRankMultipliers: [0, 24_000, 46_700, 0],
-        ...(palletVersion < REVAMP_CLEANUP_PALLET_VERSION
+        ...(specVersion == PRE_CLEANUP_SPEC_VERSION
           ? {
               slotNumberArgs: [0, 16],
-              // Perbill percentages
-              // percentages below are calculated based on total issuance at the time when dApp staking v3 was launched (8.4B)
-              tierThresholds: [
-                {
-                  DynamicPercentage: {
-                    percentage: 35_700_000, // 3.57%
-                    minimumRequiredPercentage: 23_800_000, // 2.38%
-                    maximumPossiblePercentage: 35_700_000, // 3.57%
-                  },
-                },
-                {
-                  DynamicPercentage: {
-                    percentage: 8_900_000, // 0.89%
-                    minimumRequiredPercentage: 6_000_000, // 0.6%
-                    maximumPossiblePercentage: 8_900_000, // 0.89%
-                  },
-                },
-                {
-                  DynamicPercentage: {
-                    percentage: 2_380_000, // 0.238%
-                    minimumRequiredPercentage: 1_790_000, // 0.179%
-                    maximumPossiblePercentage: 2_380_000, // 0.238%
-                  },
-                },
-                {
-                  FixedPercentage: {
-                    requiredPercentage: 200_000, // 0.02%
-                  },
-                },
-              ],
             }
           : {}),
       },
@@ -130,7 +100,7 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
     inflation: {
       activeInflationConfig: noRewardsConfig,
     },
-    ...(palletVersion < REVAMP_CLEANUP_PALLET_VERSION
+    ...(specVersion == PRE_CLEANUP_SPEC_VERSION
       ? {
           priceAggregator: {
             valuesCircularBuffer: {
@@ -146,147 +116,30 @@ given('astar')('Static number of slots, not adjusted based on price', async ({ n
 
   await advanceNextEra()
 
-  let config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
-  let numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
+  const config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
+  const numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
 
   expect(numberOfSlots).toEqual(16)
-  if (palletVersion < REVAMP_CLEANUP_PALLET_VERSION) {
-    expect(config.toHuman()).toMatchInlineSnapshot(`
-    {
-      "rewardPortion": [
-        "25.00%",
-        "47.00%",
-        "25.00%",
-        "3.00%",
-      ],
-      "slotsPerTier": [
-        "1",
-        "3",
-        "5",
-        "7",
-      ],
-      "tierThresholds": [
-        "299,880,000,000,000,000,000,000,000",
-        "74,760,000,000,000,000,000,000,000",
-        "19,992,000,000,000,000,000,000,000",
-        "1,680,000,000,000,000,000,000,000",
-      ],
-    }
-  `)
-  } else {
-    expect(config.toHuman()).toMatchInlineSnapshot(`
-    {
-      "rewardPortion": [
-        "25.00%",
-        "47.00%",
-        "25.00%",
-        "3.00%",
-      ],
-      "slotsPerTier": [
-        "1",
-        "3",
-        "5",
-        "7",
-      ],
-      "tierThresholds": [
-        "194,880,000,000,000,000,000,000,000",
-        "78,120,000,000,000,000,000,000,000",
-        "29,400,000,000,000,000,000,000,000",
-        "0",
-      ],
-    }
-  `)
+  expect(config.toHuman()).toMatchInlineSnapshot(`
+  {
+    "rewardPortion": [
+      "25.00%",
+      "47.00%",
+      "25.00%",
+      "3.00%",
+    ],
+    "slotsPerTier": [
+      "1",
+      "3",
+      "5",
+      "7",
+    ],
+    "tierThresholds": [
+      "194,880,000,000,000,000,000,000,000",
+      "78,120,000,000,000,000,000,000,000",
+      "29,400,000,000,000,000,000,000,000",
+      "0",
+    ],
   }
-
-  if (palletVersion < REVAMP_CLEANUP_PALLET_VERSION) {
-    // set price to $0.50
-    await astar.dev.setStorage({
-      inflation: {
-        activeInflationConfig: noRewardsConfig,
-      },
-      priceAggregator: {
-        valuesCircularBuffer: {
-          head: 1,
-          buffer: [
-            500_000_000_000_000_000n, // $0.50
-          ],
-        },
-      },
-    })
-
-    await advanceNextEra()
-
-    config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
-    numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
-
-    expect(numberOfSlots).toEqual(16)
-    expect(config.toHuman()).toMatchInlineSnapshot(`
-    {
-      "rewardPortion": [
-        "25.00%",
-        "47.00%",
-        "25.00%",
-        "3.00%",
-      ],
-      "slotsPerTier": [
-        "1",
-        "3",
-        "5",
-        "7",
-      ],
-      "tierThresholds": [
-        "299,880,000,000,000,000,000,000,000",
-        "74,760,000,000,000,000,000,000,000",
-        "19,992,000,000,000,000,000,000,000",
-        "1,680,000,000,000,000,000,000,000",
-      ],
-    }
-  `)
-
-    // set price to $0.01
-    await astar.dev.setStorage({
-      inflation: {
-        activeInflationConfig: noRewardsConfig,
-      },
-      priceAggregator: {
-        valuesCircularBuffer: {
-          head: 1,
-          buffer: [
-            10_000_000_000_000_000n, // $0.01
-          ],
-        },
-      },
-    })
-
-    await advanceNextEra()
-
-    config = await astar.api.query.dappStaking.tierConfig<TiersConfigurationV8>()
-    numberOfSlots = calculateNumberOfSlots(config.slotsPerTier)
-
-    expect(numberOfSlots).toEqual(16)
-    if (palletVersion >= 10) {
-      expect(config.toHuman()).toMatchInlineSnapshot(`
-      {
-        "rewardPortion": [
-          "25.00%",
-          "47.00%",
-          "25.00%",
-          "3.00%",
-        ],
-        "slotsPerTier": [
-          "1",
-          "3",
-          "5",
-          "7",
-        ],
-        "tierThresholds": [
-          "299,880,000,000,000,000,000,000,000",
-          "74,760,000,000,000,000,000,000,000",
-          "19,992,000,000,000,000,000,000,000",
-          "1,680,000,000,000,000,000,000,000",
-        ],
-      }
-    `)
-    }
-  }
+`)
 })
