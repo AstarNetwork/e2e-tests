@@ -10,7 +10,7 @@ exports[`Shiden & AssetHub > 001: Transfer KSM from AssetHub to Shiden > 001: sh
       },
       "success": true,
       "weightUsed": {
-        "proofSize": "(rounded 340000)",
+        "proofSize": "(rounded 330000)",
         "refTime": "(rounded 29000000000)",
       },
     },
@@ -107,7 +107,7 @@ exports[`Shiden & AssetHub > 002: Transfer KSM from Shiden to Asset Hub > 002: a
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 11000)",
-        "refTime": "(rounded 400000000)",
+        "refTime": "(rounded 480000000)",
       },
     },
     "method": "Processed",
