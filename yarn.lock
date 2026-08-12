@@ -1981,9 +1981,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "@rollup/pluginutils@npm:5.2.0"
+"@rollup/pluginutils@npm:^5.3.0":
+  version: 5.4.0
+  resolution: "@rollup/pluginutils@npm:5.4.0"
   dependencies:
     "@types/estree": "npm:^1.0.0"
     estree-walker: "npm:^2.0.2"
@@ -1993,7 +1993,7 @@ __metadata:
   peerDependenciesMeta:
     rollup:
       optional: true
-  checksum: 10/15e98a9e7ebeb9fdbbf072ad40e72947654abf98bcd389d6e54dcffe28f7eb93d9653037d5e18b703b0160e04210a1995cf08fc2bf45601ce77b17e4461f55c0
+  checksum: 10/eb1687d52c3847a27c5f6e790ee31a6a356c23e3c16222b4d7cf31d48dfaad2edc13e49355da9f2c59c90c1220cb089b36780cb95dc6d0ee54587f61cc5cf080
   languageName: node
   linkType: hard
 
@@ -2827,7 +2827,7 @@ __metadata:
     tsx: "npm:^4.22.4"
     typescript: "npm:5.9.2"
     typescript-eslint: "npm:8.51.0"
-    unplugin-swc: "npm:^1.5.7"
+    unplugin-swc: "npm:^1.5.9"
     vitest: "npm:^3.2.4"
   languageName: unknown
   linkType: soft
@@ -7004,28 +7004,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unplugin-swc@npm:^1.5.7":
-  version: 1.5.7
-  resolution: "unplugin-swc@npm:1.5.7"
+"unplugin-swc@npm:^1.5.9":
+  version: 1.5.9
+  resolution: "unplugin-swc@npm:1.5.9"
   dependencies:
-    "@rollup/pluginutils": "npm:^5.2.0"
+    "@rollup/pluginutils": "npm:^5.3.0"
     load-tsconfig: "npm:^0.2.5"
-    unplugin: "npm:^2.3.8"
+    unplugin: "npm:^2.3.11"
   peerDependencies:
     "@swc/core": ^1.2.108
-  checksum: 10/d2b79beee7a40508327e64880c22392a316ea8133b640530701377df8d2b5e06e2ff36b98681f89bf5dc1893842401b8f899d23714b570683720766f895f2b97
+  checksum: 10/d425f43c8e6fb5dc9e6a1ac26e27bf01dfeeeccb9a90737c30aaba6d4c407bc607a4e54845471eabe5b126c2f1da25e4f79579d687e568e2095b94cb292771f8
   languageName: node
   linkType: hard
 
-"unplugin@npm:^2.3.8":
-  version: 2.3.8
-  resolution: "unplugin@npm:2.3.8"
+"unplugin@npm:^2.3.11":
+  version: 2.3.11
+  resolution: "unplugin@npm:2.3.11"
   dependencies:
     "@jridgewell/remapping": "npm:^2.3.5"
     acorn: "npm:^8.15.0"
     picomatch: "npm:^4.0.3"
     webpack-virtual-modules: "npm:^0.6.2"
-  checksum: 10/103d3550b8f57a9882ed83ba7c258f6dedf2514519d9cb2a12f1f3928ce2e12a95410d02986497d580326e1f4005e1355b2d6100e557deb00b59450142967132
+  checksum: 10/7b4adbfaac8894e8491c452c0b67c612b57e103761e842d9013ebea89a4ae92a78df4ec0aa30e5e3eaaefd47dd287973d5a662271624b7346a15d9236d257f9d
   languageName: node
   linkType: hard
 
