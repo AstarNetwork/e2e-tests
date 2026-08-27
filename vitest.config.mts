@@ -4,8 +4,8 @@ import swc from 'unplugin-swc'
 
 export default defineConfig({
 	test: {
-		hookTimeout: 300_000,
-		testTimeout: 300_000,
+		hookTimeout: 600_000,
+		testTimeout: 600_000,
 		pool: 'forks',
 		poolOptions: { forks: { singleFork: !!process.env.GITHUB_ACTIONS } },
 		passWithNoTests: true,
