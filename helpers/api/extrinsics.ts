@@ -45,4 +45,3 @@ export const relayChainV3limitedReserveTransferAssets = (
     'Unlimited',
   )
 }
-
