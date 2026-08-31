@@ -51,6 +51,7 @@ export const shiden = {
   paraId: 2007,
   paraAccount: 'F7fq1jNy74AqkJ1DP4KqSrWtnTGtXfNVoDwFhTvvPxUvJaq',
   ksm: 340282366920938463463374607431768211455n,
+  ksm_loc: { Concrete: { parents: 1, interior: 'Here' } },
   sdn: { Concrete: { parents: 0, interior: 'Here' } },
   kar: 18446744073709551618n,
   usdt: 4294969280n,
