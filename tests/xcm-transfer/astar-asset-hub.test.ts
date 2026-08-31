@@ -49,8 +49,8 @@ describe('Astar & AssetHub', () => {
         },
       })
 
-      await tx.xtokens
-        .transfer(astarUtil.usdt, 10e6, tx.xtokens.parachainV3(statemintUtil.paraId))(astar, bob.addressRaw)
+      await tx.xcmPallet
+        .transferAssetToParachainV3(astarUtil.usdt_loc, 10e6, statemintUtil.paraId)(astar, bob.addressRaw)
         .signAndSend(alice)
 
       await astar.chain.newBlock()

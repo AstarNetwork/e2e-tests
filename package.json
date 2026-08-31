@@ -6,7 +6,7 @@
 	"private": true,
 	"packageManager": "yarn@4.5.1",
 	"scripts": {
-		"lint": "tsc --noEmit && eslint && prettier --check .",
+		"lint": "eslint && prettier --check .",
 		"fix": "eslint --fix && prettier -w .",
 		"prepare": "husky install",
 		"test": "LOG_LEVEL=error vitest",

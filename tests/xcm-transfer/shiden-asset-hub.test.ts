@@ -39,8 +39,8 @@ describe('Shiden & AssetHub', () => {
   given('shiden', 'assethub')(
     '002: Transfer KSM from Shiden to Asset Hub',
     async ({ networks: { shiden, assethub }, keyring: { alice, bob } }) => {
-      await tx.xtokens
-        .transfer(shidenUtil.ksm, 1e12, tx.xtokens.parachainV3(assethubUtil.paraId))(shiden, bob.addressRaw)
+      await tx.xcmPallet
+        .transferAssetToParachainV3(shidenUtil.ksm_loc, 1e12, assethubUtil.paraId)(shiden, bob.addressRaw)
         .signAndSend(alice)
 
       await shiden.chain.newBlock()

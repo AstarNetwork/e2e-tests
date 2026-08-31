@@ -1,95 +1,5 @@
 import { ApiPromise } from '@polkadot/api'
 
-export const xtokens = {
-  relaychainV2: (acc: any) => ({
-    V1: {
-      parents: 1,
-      interior: {
-        X1: {
-          AccountId32: {
-            network: 'Any',
-            id: acc,
-          },
-        },
-      },
-    },
-  }),
-  relaychainV3: (acc: any) => ({
-    V3: {
-      parents: 1,
-      interior: {
-        X1: {
-          AccountId32: {
-            id: acc,
-          },
-        },
-      },
-    },
-  }),
-  parachainV2: (paraId: number) => (acc: any) => ({
-    V1: {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: paraId },
-          {
-            AccountId32: {
-              network: 'Any',
-              id: acc,
-            },
-          },
-        ],
-      },
-    },
-  }),
-  parachainAccountId20V3: (paraId: number) => (acc: any) => ({
-    V3: {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: paraId },
-          {
-            AccountKey20: {
-              key: acc,
-            },
-          },
-        ],
-      },
-    },
-  }),
-  parachainV3: (paraId: number) => (acc: any) => ({
-    V3: {
-      parents: 1,
-      interior: {
-        X2: [
-          { Parachain: paraId },
-          {
-            AccountId32: {
-              id: acc,
-            },
-          },
-        ],
-      },
-    },
-  }),
-  transfer:
-    (token: any, amount: any, dest: (dest: any) => any, weight: any = 'Unlimited') =>
-    ({ api }: { api: ApiPromise }, acc: any) =>
-      api.tx.xTokens.transfer(token, amount, dest(acc), weight),
-  transferMulticurrencies:
-    (token: any, amount: any, feeToken: any, feeAmount: any, dest: (dest: any) => any) =>
-    ({ api }: { api: ApiPromise }, acc: any) =>
-      api.tx.xTokens.transferMulticurrencies(
-        [
-          [token, amount],
-          [feeToken, feeAmount],
-        ],
-        1,
-        dest(acc),
-        'Unlimited',
-      ),
-}
-
 export const xcmPallet = {
   parachainV2: (parents: number, paraId: number) => ({
     V1: {
@@ -243,10 +153,48 @@ export const xcmPallet = {
         },
         'Unlimited',
       ),
+
+  // Sends a single asset to a sibling parachain and deposits it to `acc` there.
+  transferAssetToParachainV3:
+    (token: any, amount: any, paraId: number, transferType: string = 'DestinationReserve') =>
+    ({ api }: { api: ApiPromise }, acc: any) =>
+      api.tx.polkadotXcm.transferAssetsUsingTypeAndThen(
+        { V3: { parents: 1, interior: { X1: { Parachain: paraId } } } },
+        {
+          V3: [
+            {
+              id: token,
+              fun: { Fungible: amount },
+            },
+          ],
+        },
+        transferType,
+        { V3: token },
+        transferType,
+        {
+          V3: [
+            {
+              DepositAsset: {
+                assets: { Wild: { AllCounted: 1 } },
+                beneficiary: {
+                  parents: 0,
+                  interior: {
+                    X1: {
+                      AccountId32: {
+                        id: acc,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          ],
+        },
+        'Unlimited',
+      ),
 }
 
 export const tx = {
-  xtokens,
   xcmPallet,
 }
 
