@@ -197,6 +197,9 @@ exports[`Astar & AssetHub > 002: Astar transfer USDT to AssetHub > 001: astar um
               },
             },
           },
+          {
+            "setTopic": "(redacted)",
+          },
         ],
       },
     ],

@@ -107,7 +107,7 @@ exports[`Shiden & AssetHub > 002: Transfer KSM from Shiden to Asset Hub > 002: a
       "success": true,
       "weightUsed": {
         "proofSize": "(rounded 11000)",
-        "refTime": "(rounded 480000000)",
+        "refTime": "(rounded 460000000)",
       },
     },
     "method": "Processed",
